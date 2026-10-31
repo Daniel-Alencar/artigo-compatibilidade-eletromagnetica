@@ -1,15 +1,15 @@
 # Fdb version 4
-["bibtex artigo-iem-mri"] 1793475356.79124 "artigo-iem-mri.aux" "artigo-iem-mri.bbl" "artigo-iem-mri" 1793475791.10298 0
+["bibtex artigo-iem-mri"] 1793475975.88908 "artigo-iem-mri.aux" "artigo-iem-mri.bbl" "artigo-iem-mri" 1793475980.35881 0
   "./apalike-sol.bst" 1793164166 24928 269dedab788b7f84af88c155ecb45872 ""
   "./refs-mri.bib" 1793470601.12169 20869 206c00c97daa06448ca5d5f8702e8779 ""
-  "artigo-iem-mri.aux" 1793475790.34421 8107 cc9a01057ba863d91c582b485acd6415 "pdflatex"
+  "artigo-iem-mri.aux" 1793475980.01562 8107 4f2fb3a21892f82c78c6ce5aca6baffd "pdflatex"
   (generated)
   "artigo-iem-mri.bbl"
   "artigo-iem-mri.blg"
   (rewritten before read)
-["pdflatex"] 1793475787.34243 "/media/engenheiro/Arquivos_Linux/Arquivos/Backup/Projetos/Mestrado/Períodos/Período 1/Disciplinas/Compatibilidade Eletromagnética/Trabalho/Artigo/artigo-iem-mri.tex" "artigo-iem-mri.pdf" "artigo-iem-mri" 1793475791.10333 0
+["pdflatex"] 1793475976.15355 "/media/engenheiro/Arquivos_Linux/Arquivos/Backup/Projetos/Mestrado/Períodos/Período 1/Disciplinas/Compatibilidade Eletromagnética/Trabalho/Artigo/artigo-iem-mri.tex" "artigo-iem-mri.pdf" "artigo-iem-mri" 1793475980.35917 0
   "/etc/texmf/web2c/texmf.cnf" 1792864012.25217 475 c0e671620eb5563b2130f56340a5fde8 ""
-  "/media/engenheiro/Arquivos_Linux/Arquivos/Backup/Projetos/Mestrado/Períodos/Período 1/Disciplinas/Compatibilidade Eletromagnética/Trabalho/Artigo/artigo-iem-mri.tex" 1793475785.09007 29809 4029edbd16ffc036d250d320ccc40bc3 ""
+  "/media/engenheiro/Arquivos_Linux/Arquivos/Backup/Projetos/Mestrado/Períodos/Período 1/Disciplinas/Compatibilidade Eletromagnética/Trabalho/Artigo/artigo-iem-mri.tex" 1793475957.50751 29857 7f0250f2d518d9ae43c90b567094426f ""
   "/usr/share/texlive/texmf-dist/fonts/enc/dvips/fira/fir_2mfh3o.enc" 1570828436 3443 c184b8b1bd90c3ec5d4289b992e64d96 ""
   "/usr/share/texlive/texmf-dist/fonts/enc/dvips/fira/fir_iln36p.enc" 1570828436 3071 cfa92ee28d698dd9275559d9d1c3a233 ""
   "/usr/share/texlive/texmf-dist/fonts/enc/dvips/fontawesome/fontawesomeone.enc" 1463430686 1687 f004baecce60175c6453d0e3f808cf20 ""
@@ -263,10 +263,10 @@
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1793468628.85204 5472669 54eaf61a88b6b7896ebd0dac973cb29c ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1793468897 8213447 646b329fc4e2dfa0d37d66e0da0e92a9 ""
   "aas_macros.sty" 1793164166 4967 cf45ff75f433e372cec5993ac08f4363 ""
-  "artigo-iem-mri.aux" 1793475790.34421 8107 cc9a01057ba863d91c582b485acd6415 "pdflatex"
-  "artigo-iem-mri.bbl" 1793475357.04373 3602 861966e918b00fcbe43124ddd56182fc "bibtex artigo-iem-mri"
-  "artigo-iem-mri.out" 1793475790.34821 3681 4d369cdfaac8bcf4ff7b947d2470c156 "pdflatex"
-  "artigo-iem-mri.tex" 1793475785.09007 29809 4029edbd16ffc036d250d320ccc40bc3 ""
+  "artigo-iem-mri.aux" 1793475980.01562 8107 4f2fb3a21892f82c78c6ce5aca6baffd "pdflatex"
+  "artigo-iem-mri.bbl" 1793475976.14034 3602 861966e918b00fcbe43124ddd56182fc "bibtex artigo-iem-mri"
+  "artigo-iem-mri.out" 1793475980.01962 3681 4d369cdfaac8bcf4ff7b947d2470c156 "pdflatex"
+  "artigo-iem-mri.tex" 1793475957.50751 29857 7f0250f2d518d9ae43c90b567094426f ""
   "sbcreviews-2025.cls" 1793164166 14965 57783aceca67439c0ccd2ed7afa6426f ""
   (generated)
   "artigo-iem-mri.aux"
