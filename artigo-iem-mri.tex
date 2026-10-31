@@ -142,7 +142,14 @@ O comportamento na direção de codificação de fase decorre da repetição da 
 
 \subsection{A sala blindada}
 
-A contramedida convencional envolve a vítima em uma gaiola que cobre paredes, teto, piso, janela e porta, em painéis de cobre, aço ou alumínio \citep{kwok2024rf, kellogg2021navigating}. O requisito típico é de 100\,dB de atenuação em 100\,MHz para 1,5\,T e em 150--170\,MHz para 3,0\,T \citep{kwok2024rf}; as frequências de ensaio situam-se acima das respectivas frequências de Larmor, incorporando margem de projeto.
+A contramedida convencional envolve a vítima em uma gaiola que cobre paredes, teto, piso, janela e porta, em painéis de cobre, aço ou alumínio \citep{kwok2024rf, kellogg2021navigating}. O requisito típico é de 100\,dB de atenuação em 100\,MHz para 1,5\,T e em 150--170\,MHz para 3,0\,T \citep{kwok2024rf}; as frequências de ensaio situam-se acima das respectivas frequências de Larmor, incorporando margem de projeto. A Figura~\ref{fig:blindagem} mostra os três elementos principais dessa gaiola.
+
+\begin{figure*}[t]
+\centering
+\includegraphics[width=\textwidth]{figuras/kwok-fig2-blindagem.png}
+\caption{Blindagem de uma sala de ressonância magnética: (a) blindagem da parede; (b) janela com tela metálica; (c) contatos de cobre no batente da porta. Fonte: \citet{kwok2024rf}.}
+\label{fig:blindagem}
+\end{figure*}
 
 Em uma blindagem bem executada, o fator limitante não é a espessura do condutor, mas a integridade elétrica das descontinuidades: juntas, perímetro da porta, tela da janela e penetrações de serviços. Uma fenda comporta-se como antena, com radiação significativa quando seu comprimento $\ell$ se aproxima de
 \begin{equation}
@@ -167,7 +174,14 @@ O caso mais comum é o vazamento de RF externa por falhas na gaiola: porta abert
 \subsection{Cabos atravessando o guia de onda}
 \label{subsec:waveguide}
 
-O guia de onda é um duto na parede que bloqueia RF e deve receber apenas fibra óptica e tubos não metálicos. Quando um cabo elétrico ou de rede passa por ele, o condutor funciona como antena: capta RF fora da sala e a reirradia dentro dela, anulando a blindagem. Em um caso relatado, o cabo de uma luminária ligado a uma tomada da sala de comando causou artefato \textbf{mesmo com a luminária desligada}, e o problema só desapareceu quando o cabo foi recolhido para dentro da sala \citep{kwok2024rf}.
+O guia de onda é um duto na parede que bloqueia RF e deve receber apenas fibra óptica e tubos não metálicos. Quando um cabo elétrico ou de rede passa por ele, o condutor funciona como antena: capta RF fora da sala e a reirradia dentro dela, anulando a blindagem. Em um caso relatado, o cabo de uma luminária ligado a uma tomada da sala de comando causou artefato \textbf{mesmo com a luminária desligada}, e o problema só desapareceu quando o cabo foi recolhido para dentro da sala \citep{kwok2024rf}, como mostra a Figura~\ref{fig:luminaria}.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{figuras/kwok-fig4-luminaria.png}
+\caption{Artefato de interferência de RF (setas) em exame de mama, causado por uma luminária cujo cabo atravessava o guia de onda até uma tomada da sala de comando. À esquerda, de cima para baixo: a imagem clínica, o teste em simulador com o cabo passando pelo guia e o mesmo teste após a correção. Fonte: \citet{kwok2024rf}.}
+\label{fig:luminaria}
+\end{figure}
 
 \subsection{Equipamentos dentro da sala}
 \label{subsec:equipamentos}
@@ -253,6 +267,13 @@ Essas medidas têm limites: a blindagem não atenua fontes internas ao equipamen
 \section{Mitigação Ativa e Aprendizado Profundo}
 \label{sec:ativa}
 
+\begin{figure}[!t]
+\centering
+\includegraphics[width=\columnwidth]{figuras/zhao-fig1a-sensores.png}
+\caption{Equipamento de 0,055\,T sem blindagem, com bobinas sensoras de IEM (\textit{EMI sensing coils}) junto à bobina receptora, sob a mesa do paciente e próximas às eletrônicas de RF e de gradiente, que são fontes internas de interferência. Fonte: adaptada de \citet{zhao2024emi}.}
+\label{fig:sensores}
+\end{figure}
+
 \begin{table*}[!t]
 \centering\small
 \caption{Comparação entre estratégias de mitigação de IEM em MRI. Compilada a partir de \citet{kwok2024rf, zhao2024emi, srinivas2022editer, yang2022active, oreilly2021invivo}.}
@@ -269,9 +290,17 @@ CNN específica do exame & Temporal, não linear, orientado a dados & Média (bo
 \end{tabular}
 \end{table*}
 
+\begin{figure*}[!t]
+\centering
+\includegraphics[width=\textwidth]{figuras/zhao-fig5-comparacao.png}
+\caption{Imagens de cérebro em 0,055\,T sem blindagem, ponderadas em T1 (esquerda) e T2 (direita). Linha superior: sem eliminação de IEM. Demais linhas: com eliminação pelo método de função de transferência (TF), pelo EDITER e pela CNN proposta; as setas indicam resíduos de interferência nos métodos analíticos. Abaixo, o espectro da interferência antes e depois da eliminação. Fonte: \citet{zhao2024emi}.}
+\label{fig:comparacao}
+\end{figure*}
+
+
 \subsection{Princípio}
 
-Em vez de bloquear a interferência, os métodos ativos a medem e a subtraem. Além da bobina receptora, que capta o sinal de ressonância somado à interferência, o equipamento recebe bobinas sensoras posicionadas ao seu redor, que captam apenas a interferência. Conhecendo a relação entre o que as sensoras medem e a interferência que chega à bobina receptora, é possível estimar essa interferência e subtraí-la dos dados antes de formar a imagem \citep{zhao2024emi}. Os métodos se diferenciam pela forma de estimar essa relação.
+Em vez de bloquear a interferência, os métodos ativos a medem e a subtraem. Além da bobina receptora, que capta o sinal de ressonância somado à interferência, o equipamento recebe bobinas sensoras posicionadas ao seu redor, que captam apenas a interferência. Conhecendo a relação entre o que as sensoras medem e a interferência que chega à bobina receptora, é possível estimar essa interferência e subtraí-la dos dados antes de formar a imagem \citep{zhao2024emi}. A Figura~\ref{fig:sensores} mostra essa disposição em um equipamento portátil de 0,055\,T. Os métodos se diferenciam pela forma de estimar essa relação.
 
 \subsection{Métodos analíticos}
 
@@ -286,7 +315,7 @@ O método tem duas vantagens importantes: não depende de grandes bancos de dado
 
 \subsection{Resultados}
 
-Em imagens de cérebro obtidas em um equipamento de 0,055\,T sem nenhuma blindagem, o ruído caiu de 1,44 para 0,58 com o cancelamento, praticamente o mesmo valor obtido com a gaiola de Faraday completa \citep{zhao2024emi}. O método superou os métodos analíticos e funcionou também em um equipamento clínico de 1,5\,T com a porta da sala aberta.
+Em imagens de cérebro obtidas em um equipamento de 0,055\,T sem nenhuma blindagem, o ruído caiu de 1,44 para 0,58 com o cancelamento, praticamente o mesmo valor obtido com a gaiola de Faraday completa \citep{zhao2024emi}. O método superou os métodos analíticos (Figura~\ref{fig:comparacao}) e funcionou também em um equipamento clínico de 1,5\,T com a porta da sala aberta.
 
 A Tabela~\ref{tab:comparacao} resume as estratégias. Elas são complementares: identificar a fonte a elimina na origem, a blindagem continua sendo a solução mais econômica contra a interferência externa em instalações fixas, e o cancelamento ativo é a única que trata também a interferência interna e a que varia durante o exame.
 

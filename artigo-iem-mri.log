@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2026.10.31)  31 OCT 2026 16:46
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2026.10.31)  31 OCT 2026 16:52
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1202,116 +1202,146 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 131.
 
+<figuras/kwok-fig2-blindagem.png, id=165, 1517.67pt x 446.66875pt>
+File: figuras/kwok-fig2-blindagem.png Graphic file (type png)
+<use figuras/kwok-fig2-blindagem.png>
+Package pdftex.def Info: figuras/kwok-fig2-blindagem.png  used on input line 14
+9.
+(pdftex.def)             Requested size: 498.0pt x 146.56282pt.
+<figuras/kwok-fig4-luminaria.png, id=181, 1013.7875pt x 1079.03125pt>
+File: figuras/kwok-fig4-luminaria.png Graphic file (type png)
+<use figuras/kwok-fig4-luminaria.png>
+Package pdftex.def Info: figuras/kwok-fig4-luminaria.png  used on input line 18
+1.
+(pdftex.def)             Requested size: 240.0pt x 255.43289pt.
 [2]
-Underfull \hbox (badness 10000) in paragraph at lines 199--199
+Underfull \hbox (badness 10000) in paragraph at lines 213--213
 []\T1/qtm/m/n/9 (+20) Radiado por aber-tura;
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 200--200
+Underfull \hbox (badness 10000) in paragraph at lines 214--214
 []\T1/qtm/m/n/9 (+20) Portas e to-ma-das fil-tra-das;
  []
 
 
-Underfull \hbox (badness 1783) in paragraph at lines 202--202
+Underfull \hbox (badness 1783) in paragraph at lines 216--216
 []\T1/qtm/m/n/9 (+20) Projeto de CEM do equi-pa-
  []
 
-
-Underfull \hbox (badness 3108) in paragraph at lines 233--233
+[3 <./figuras/kwok-fig2-blindagem.png (PNG copy)> <./figuras/kwok-fig4-luminari
+a.png (PNG copy)>]
+Underfull \hbox (badness 3108) in paragraph at lines 247--247
 \T1/qtm/m/n/9 (+20) ima-gens da sé-rie; ori-en-ta-ção
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 234--234
+Underfull \hbox (badness 10000) in paragraph at lines 248--248
 []\T1/qtm/m/it/9 (+20) Spike \T1/qtm/m/n/9 (+20) (es-pi-nha de
  []
 
 
-Underfull \hbox (badness 2134) in paragraph at lines 234--234
+Underfull \hbox (badness 2134) in paragraph at lines 248--248
 \T1/qtm/m/n/9 (+20) con-forme a po-si-ção do \T1/qtm/m/it/9 (+20) spike
  []
 
+<figuras/zhao-fig1a-sensores.png, id=262, 1417.295pt x 692.5875pt>
+File: figuras/zhao-fig1a-sensores.png Graphic file (type png)
+<use figuras/zhao-fig1a-sensores.png>
+Package pdftex.def Info: figuras/zhao-fig1a-sensores.png  used on input line 27
+2.
+(pdftex.def)             Requested size: 240.0pt x 117.27332pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 262--262
+Underfull \hbox (badness 10000) in paragraph at lines 283--283
 []\T1/qtm/b/n/9 (+20) Exigência de
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 263--263
+Underfull \hbox (badness 10000) in paragraph at lines 284--284
 []\T1/qtm/m/n/9 (+20) Padrão clí-nico
  []
 
 
-Underfull \hbox (badness 1297) in paragraph at lines 264--264
+Underfull \hbox (badness 1297) in paragraph at lines 285--285
 []\T1/qtm/m/n/9 (+20) Demonstrado em
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 265--265
+Underfull \hbox (badness 10000) in paragraph at lines 286--286
 []\T1/qtm/m/n/9 (+20) Triagem pro-ce-di-
  []
 
 
-Underfull \hbox (badness 3679) in paragraph at lines 265--265
+Underfull \hbox (badness 3679) in paragraph at lines 286--286
 \T1/qtm/m/n/9 (+20) men-tal e con-trole
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 265--265
+Underfull \hbox (badness 10000) in paragraph at lines 286--286
 []\T1/qtm/m/n/9 (+20) Nenhuma além
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 265--265
+Underfull \hbox (badness 10000) in paragraph at lines 286--286
 []\T1/qtm/m/n/9 (+20) Apenas fon-tes
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 266--266
+Underfull \hbox (badness 10000) in paragraph at lines 287--287
 []\T1/qtm/m/n/9 (+20) Média (bo-bi-nas
  []
 
 
-Underfull \hbox (badness 4846) in paragraph at lines 267--267
+Underfull \hbox (badness 4846) in paragraph at lines 288--288
 []\T1/qtm/m/n/9 (+20) Média (bo-bi-nas,
  []
 
 
-Underfull \hbox (badness 2460) in paragraph at lines 267--267
+Underfull \hbox (badness 2460) in paragraph at lines 288--288
 []\T1/qtm/m/n/9 (+20) Pesquisa, có-digo
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 268--268
+Underfull \hbox (badness 10000) in paragraph at lines 289--289
 []\T1/qtm/m/n/9 (+20) Média (bo-bi-nas
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 268--268
+Underfull \hbox (badness 10000) in paragraph at lines 289--289
 []\T1/qtm/m/n/9 (+20) Sim, de-mons-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 268--268
+Underfull \hbox (badness 10000) in paragraph at lines 289--289
 []\T1/qtm/m/n/9 (+20) Sim, de-mons-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 268--268
+Underfull \hbox (badness 10000) in paragraph at lines 289--289
 []\T1/qtm/m/n/9 (+20) Pesquisa avan-
  []
 
 
-Underfull \hbox (badness 4144) in paragraph at lines 268--268
+Underfull \hbox (badness 4144) in paragraph at lines 289--289
 \T1/qtm/m/n/9 (+20) çada; co-orte de
  []
 
-[3]
+<figuras/zhao-fig5-comparacao.png, id=287, 1676.2625pt x 1299.85625pt>
+File: figuras/zhao-fig5-comparacao.png Graphic file (type png)
+<use figuras/zhao-fig5-comparacao.png>
+Package pdftex.def Info: figuras/zhao-fig5-comparacao.png  used on input line 2
+95.
+(pdftex.def)             Requested size: 498.0pt x 386.17155pt.
+[4 <./figuras/zhao-fig1a-sensores.png (PNG copy)>]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [4]
-(./artigo-iem-mri.bbl) [5] (./artigo-iem-mri.aux)
+ [5]
+(./artigo-iem-mri.bbl
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [6 <./figuras/zhao-fig5-comparacao.png (PNG copy)>]) [7
+
+] (./artigo-iem-mri.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-22>
@@ -1324,11 +1354,11 @@ Package rerunfilecheck Info: File `artigo-iem-mri.out' has not changed.
 (rerunfilecheck)             Checksum: 4D369CDFAAC8BCF4FF7B947D2470C156;3681.
  ) 
 Here is how much of TeX's memory you used:
- 32899 strings out of 474222
- 613161 string characters out of 5748732
- 1965975 words of memory out of 5000000
- 54243 multiletter control sequences out of 15000+600000
- 831408 words of font info for 273 fonts, out of 8000000 for 9000
+ 32952 strings out of 474222
+ 614621 string characters out of 5748732
+ 1963975 words of memory out of 5000000
+ 54282 multiletter control sequences out of 15000+600000
+ 831829 words of font info for 277 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  132i,14n,135p,1368b,890s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/fira/FiraSans-Bold.pfb></us
@@ -1347,10 +1377,10 @@ s/cm/cmsy6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cm
 sy8.pfb></usr/share/texmf/fonts/type1/public/tex-gyre/qtmb.pfb></usr/share/texm
 f/fonts/type1/public/tex-gyre/qtmr.pfb></usr/share/texmf/fonts/type1/public/tex
 -gyre/qtmri.pfb>
-Output written on artigo-iem-mri.pdf (5 pages, 405018 bytes).
+Output written on artigo-iem-mri.pdf (7 pages, 4548188 bytes).
 PDF statistics:
- 393 PDF objects out of 1000 (max. 8388607)
- 326 compressed objects within 4 object streams
- 47 named destinations out of 1000 (max. 500000)
- 78517 words of extra memory for PDF output out of 89155 (max. 10000000)
+ 432 PDF objects out of 1000 (max. 8388607)
+ 351 compressed objects within 4 object streams
+ 53 named destinations out of 1000 (max. 500000)
+ 78537 words of extra memory for PDF output out of 89155 (max. 10000000)
 
