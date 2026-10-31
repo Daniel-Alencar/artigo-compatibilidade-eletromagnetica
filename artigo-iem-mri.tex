@@ -118,7 +118,7 @@ Electromagnetic compatibility, Electromagnetic interference, Magnetic resonance 
 \section{Introdução}
 \label{sec:intro}
 
-O sinal útil em imagem por ressonância magnética (\textit{Magnetic Resonance Imaging} --- MRI) é a tensão induzida em uma bobina receptora pela precessão da magnetização nuclear, da ordem de microvolts, em uma faixa estreita de frequências. Essa bobina é, para todos os efeitos de engenharia, uma antena ressonante de alta sensibilidade \citep{kwok2022basic}. Do ponto de vista da compatibilidade eletromagnética (CEM), a configuração define uma vítima quase ideal: qualquer campo espúrio de radiofrequência (RF) que alcance a bobina na faixa de recepção é digitalizado junto com o sinal de ressonância e reaparece na imagem como estrutura espúria --- o artefato de interferência de RF, conhecido como artefato de zíper por sua aparência de linhas brilhantes paralelas \citep{kwok2024rf}. Ele está entre os artefatos mais frequentes em exames clínicos, porque o número de fontes potenciais em ambiente hospitalar é grande \citep{kwok2024rf}.
+O sinal útil em imagem por ressonância magnética (\textit{Magnetic Resonance Imaging} --- MRI) é a tensão induzida em uma bobina receptora pela precessão da magnetização nuclear, da ordem de microvolts, em uma faixa estreita de frequências. Essa bobina é, para todos os efeitos de engenharia, uma antena ressonante de alta sensibilidade \citep{kwok2024rf}. Do ponto de vista da compatibilidade eletromagnética (CEM), a configuração define uma vítima quase ideal: qualquer campo espúrio de radiofrequência (RF) que alcance a bobina na faixa de recepção é digitalizado junto com o sinal de ressonância e reaparece na imagem como estrutura espúria --- o artefato de interferência de RF, conhecido como artefato de zíper por sua aparência de linhas brilhantes paralelas \citep{kwok2024rf}. Ele está entre os artefatos mais frequentes em exames clínicos, porque o número de fontes potenciais em ambiente hospitalar é grande \citep{kwok2024rf}.
 
 A resposta histórica foi a blindagem passiva: o equipamento é instalado em uma gaiola de Faraday que envolve integralmente a sala, com atenuação tipicamente em torno de 100\,dB \citep{kwok2024rf, kellogg2021navigating}. A solução é eficaz, mas impõe custo e requisitos rígidos de infraestrutura \citep{zhao2024emi} e, sobretudo, atua apenas sobre o acoplamento com o ambiente externo: não protege contra fontes situadas dentro da própria sala, sejam equipamentos auxiliares, sejam subsistemas do próprio equipamento de MRI \citep{kwok2024rf, zhao2024emi}. Esse ponto cego tornou-se crítico com os equipamentos de campo ultrabaixo (\textit{Ultra-Low-Field} --- ULF), abaixo de 0,1\,T, voltados a exames de baixo custo à beira do leito \citep{marques2019lowfield, liu2021lowcost}. Eles dispensam blindagem magnética, mas muitos ainda exigem uma gaiola de RF volumosa, o que anula a portabilidade que os motivou \citep{zhao2024emi}. Daí a pergunta que orienta a literatura recente: é possível substituir, total ou parcialmente, a blindagem passiva por medição e cancelamento ativos da interferência?
 
@@ -195,7 +195,7 @@ Injetoras de contraste, aparelhos de anestesia, monitores e luminárias têm fon
 \Delta\mathrm{SNR} = 20\log_{10}\frac{32{,}9}{64{,}4} \approx -5{,}8\,\mathrm{dB} ,
 \label{eq:snr}
 \end{equation}
-sem produzir nenhum artefato visível. Além disso, a ausência de artefato com uma bobina pouco sensível, como a de corpo, não garante ausência de interferência \citep{kwok2024rf, kwok2022basic}.
+sem produzir nenhum artefato visível. Além disso, a ausência de artefato com uma bobina pouco sensível, como a de corpo, não garante ausência de interferência \citep{kwok2024rf}.
 
 \subsection{Eletrônica do próprio equipamento}
 \label{subsec:internas}
@@ -277,43 +277,7 @@ Essas medidas têm limites: a blindagem não atenua fontes internas ao equipamen
 \section{Mitigação Ativa e Aprendizado Profundo}
 \label{sec:ativa}
 
-\subsection{Princípio}
-
-Em vez de bloquear a interferência, os métodos ativos a medem e a subtraem. Bobinas sensoras dedicadas, posicionadas ao redor do equipamento, captam apenas IEM, enquanto a bobina receptora capta sinal e interferência:
-\begin{equation}
-s_{\text{rx}}(t) = s_{\text{MR}}(t) + n_{\text{EMI}}(t) .
-\label{eq:modelo}
-\end{equation}
-Se for conhecida a relação entre o que as sensoras medem e a interferência na bobina receptora, o sinal limpo é estimado por
-\begin{equation}
-\hat{s}_{\text{MR}}(t) = s_{\text{rx}}(t) - \mathcal{F}\!\left[e_1(t),\dots,e_{N_s}(t)\right] ,
-\label{eq:cancelamento}
-\end{equation}
-em que $e_i(t)$ é o sinal da $i$-ésima das $N_s$ bobinas sensoras e $\mathcal{F}$ modela o acoplamento entre elas e a bobina receptora \citep{zhao2024emi}. O princípio já era usado em NMR de superfície e em radioastronomia \citep{briggs2000removing}; os métodos diferem na forma de estimar $\mathcal{F}$.
-
-\subsection{Métodos analíticos}
-
-As primeiras abordagens modelam $\mathcal{F}$ como linear. Nos métodos de função de transferência espectral, ela é estimada por mínimos quadrados em cada frequência \citep{rearick2017patent, yang2022active}; o EDITER faz o mesmo no domínio do tempo, como uma convolução adaptativa \citep{srinivas2022editer}. Há também variantes com uma única bobina sensora \citep{parsa2023single} e com magnetômetros \citep{huang2018adaptive}. Esses métodos reduzem bastante a interferência, mas deixam resíduos quando há muitas fontes, quando o espectro muda durante o exame ou quando o paciente se move, porque um modelo linear fixo não acompanha essas variações \citep{zhao2024emi}.
-
-\subsection{Aprendizado profundo}
-\label{subsec:dl}
-
-\citet{zhao2024emi} substituíram o modelo linear por uma rede neural convolucional (\textit{Convolutional Neural Network} --- CNN) de cinco camadas. Em cada tempo de repetição, os dados são adquiridos em duas janelas: a janela normal, com sinal de ressonância, e uma janela extra sem excitação de RF, que contém apenas interferência. Os dados dessa segunda janela, medidos simultaneamente pelas sensoras ($\mathbf{e}^{(c)}$) e pela bobina receptora ($n^{(c)}$), treinam a rede $f_\theta$ a cada exame:
-\begin{equation}
-\theta^{*} = \arg\min_{\theta} \sum_{k} \left\| n^{(c)}_{k} - f_{\theta}\!\left(\mathbf{e}^{(c)}_{k}\right) \right\|_2^2 ,
-\label{eq:treino}
-\end{equation}
-em que $k$ percorre as linhas de codificação de frequência. A rede treinada faz o papel de $\mathcal{F}$ na Equação~\eqref{eq:cancelamento}: prediz a interferência na janela normal, que é subtraída antes da reconstrução da imagem.
-
-Duas características tornam o método atraente: o treinamento usa apenas dados do próprio exame, sem bases históricas, e leva cerca de 5\,min; e a rede prediz a interferência, não a imagem, de modo que não pode criar estruturas anatômicas inexistentes.
-
-\subsection{Resultados}
-
-Em imagens cerebrais em 0,055\,T, o ruído sem blindagem caiu de 1,44 para 0,58 após o cancelamento, valor praticamente igual ao obtido com gaiola de Faraday completa (0,58), com diferença inferior a 3\% \citep{zhao2024emi}. O método superou a função de transferência espectral e o EDITER, manteve a vantagem com uma única bobina sensora e funcionou também em 1,5\,T com a porta da sala aberta, onde chegou a superar a SNR obtida com a porta fechada. A estratégia foi aplicada a cem voluntários e pacientes, e um trabalho posterior propõe prever diretamente o sinal de ressonância limpo \citep{zhao2024robust}. Já os métodos de super-resolução por aprendizado profundo \citep{iglesias2023quantitative} atuam em outra frente: compensam a baixa SNR da imagem, sem remover a interferência.
-
-A Tabela~\ref{tab:comparacao} resume as estratégias. Elas são complementares: a identificação da fonte a elimina na origem, a blindagem é a solução mais econômica para a interferência externa em instalações fixas, e o cancelamento ativo é a única que trata também a interferência interna e a que varia durante o exame.
-
-\begin{table*}[t]
+\begin{table*}[!t]
 \centering\small
 \caption{Comparação entre estratégias de mitigação de IEM em MRI. Compilada a partir de \citet{kwok2024rf, zhao2024emi, srinivas2022editer, yang2022active, oreilly2021invivo}.}
 \label{tab:comparacao}
@@ -323,21 +287,42 @@ A Tabela~\ref{tab:comparacao} resume as estratégias. Elas são complementares: 
 Gaiola de Faraday completa & Barreira física na fronteira externa & Muito alta (obra civil) & Não & Sim, para fontes externas & Padrão clínico consolidado \\ \hline
 Tecido condutor sobre o paciente & Barreira física local & Muito baixa & Não & Parcialmente & Demonstrado em pesquisa \\ \hline
 Triagem procedimental e controle de qualidade & Remoção da fonte e do caminho & Nenhuma além de simulador & Apenas fontes acessíveis & Não se aplica & Prática clínica recomendada \\ \hline
-Função de transferência espectral & Espectral, linear & Média (bobinas sensoras) & Sim, se sensoreada & Parcialmente & Pesquisa; produto \\ \hline
+Função de transferência espectral & Espectral, linear & Média (bobinas sensoras) & Sim, se sensoreada & Parcialmente & Pesquisa \\ \hline
 EDITER & Temporal, convolução linear adaptativa & Média (bobinas, tecido, eletrodo) & Sim, se sensoreada & Parcialmente & Pesquisa, código aberto \\ \hline
 CNN específica do exame & Temporal, não linear, orientado a dados & Média (bobinas sensoras, GPU) & Sim, demonstrado & Sim, demonstrado & Pesquisa avançada; coorte de 100 sujeitos \\ \hline
 \end{tabular}
 \end{table*}
 
+\subsection{Princípio}
+
+Em vez de bloquear a interferência, os métodos ativos a medem e a subtraem. Além da bobina receptora, que capta o sinal de ressonância somado à interferência, o equipamento recebe bobinas sensoras posicionadas ao seu redor, que captam apenas a interferência. Conhecendo a relação entre o que as sensoras medem e a interferência que chega à bobina receptora, é possível estimar essa interferência e subtraí-la dos dados antes de formar a imagem \citep{zhao2024emi}. Os métodos se diferenciam pela forma de estimar essa relação.
+
+\subsection{Métodos analíticos}
+
+As primeiras abordagens tratam essa relação como linear e a estimam por ajuste matemático, seja no domínio da frequência \citep{yang2022active}, seja no domínio do tempo, como no método EDITER \citep{srinivas2022editer}. Elas reduzem bastante a interferência, mas deixam resíduos em ambientes reais, onde há muitas fontes ao mesmo tempo, o espectro muda durante o exame e o próprio paciente altera o acoplamento ao se mover \citep{zhao2024emi}.
+
+\subsection{Aprendizado profundo}
+\label{subsec:dl}
+
+\citet{zhao2024emi} propuseram substituir o ajuste linear por uma rede neural convolucional (\textit{Convolutional Neural Network} --- CNN). A ideia é acrescentar a cada repetição da sequência um breve intervalo de aquisição sem excitação de RF, no qual a bobina receptora registra apenas interferência. Com esses dados, a rede aprende, durante o próprio exame, a prever a interferência na bobina receptora a partir das bobinas sensoras; essa previsão é então usada para limpar os dados do exame antes da reconstrução da imagem.
+
+O método tem duas vantagens importantes: não depende de grandes bancos de dados de treinamento, pois aprende com o próprio exame em poucos minutos; e prevê a interferência, não a imagem, de modo que não pode criar estruturas anatômicas inexistentes.
+
+\subsection{Resultados}
+
+Em imagens de cérebro obtidas em um equipamento de 0,055\,T sem nenhuma blindagem, o ruído caiu de 1,44 para 0,58 com o cancelamento, praticamente o mesmo valor obtido com a gaiola de Faraday completa \citep{zhao2024emi}. O método superou os métodos analíticos e funcionou também em um equipamento clínico de 1,5\,T com a porta da sala aberta.
+
+A Tabela~\ref{tab:comparacao} resume as estratégias. Elas são complementares: identificar a fonte a elimina na origem, a blindagem continua sendo a solução mais econômica contra a interferência externa em instalações fixas, e o cancelamento ativo é a única que trata também a interferência interna e a que varia durante o exame.
+
+
+
 
 \section{Lacunas e Conclusão}
 \label{sec:conclusao}
 
-A lacuna mais limitante identificada é metodológica: os trabalhos reportam desempenho em métricas heterogêneas --- desvio padrão de imagem de diferença, SNR em simulador, inspeção visual de espectros --- e sob condições de interferência não padronizadas, o que impede comparação direta entre grupos. A CEM dispõe de instrumentos maduros para isso, ainda não incorporados pela literatura de MRI: ensaios com agressores de características especificadas, caracterização do ambiente eletromagnético do sítio e relato de níveis de perturbação em unidades absolutas. \citet{zhao2024emi} apontam ainda como direções dispensar a janela dedicada de caracterização, tornar o modelo interpretável, reduzir o número de bobinas sensoras e validar o método em alto campo, já que os experimentos em 1,5\,T se restringiram a simulador.
+A principal lacuna é a falta de padronização: cada trabalho avalia o desempenho com métricas e condições de interferência diferentes, o que impede comparar diretamente os métodos. A CEM já dispõe de ferramentas para isso, como ensaios com fontes de interferência controladas. Outras questões em aberto são a validação clínica do cancelamento ativo, com estudos de desempenho diagnóstico, sua avaliação em equipamentos de alto campo \citep{zhao2024emi} e a redução da interferência na própria origem, por meio de um projeto eletrônico mais cuidadoso dos equipamentos.
 
-A leitura conjunta das duas perspectivas sugere três lacunas adicionais. A primeira é a \textbf{redução de emissão na fonte}: a IEM interna que persiste mesmo com blindagem completa é um problema de emissão de subsistema, que pode ser atacado no projeto --- filtragem de saída dos amplificadores, blindagem local de gabinete, controle de correntes de modo comum, aterramento ---, e a literatura não compara o custo dessa abordagem com o do cancelamento. A segunda é a \textbf{validação clínica}: a ausência de detrimento ao sinal foi aferida por níveis de ruído e inspeção visual, não por estudos de desempenho diagnóstico com leitores. A terceira é a \textbf{integração dos níveis de mitigação}: as bobinas sensoras instaladas para cancelamento formam também um monitor contínuo do ambiente eletromagnético, capaz de detectar a degradação da blindagem antes do artefato e de localizar fontes por comparação entre sensores.
-
-Em síntese, as fontes de IEM em MRI atuam por mecanismos de acoplamento distintos, e a blindagem passiva endereça apenas parte deles; a posição do artefato na imagem é governada pela Equação~\eqref{eq:posicao}, sendo a interferência de banda larga o modo de falha mais perigoso por não produzir estrutura reconhecível; e o cancelamento ativo por aprendizado profundo alcançou, sem qualquer blindagem, ruído equivalente, dentro de 3\%, ao de uma gaiola completa. A IEM em MRI deixou, assim, de ser um problema apenas de infraestrutura para se tornar um problema conjunto de projeto eletromagnético e de processamento de sinais. O cancelamento ativo não é só um substituto da blindagem onde ela falta, mas um complemento que alcança a parcela de interferência que a blindagem nunca alcançou --- e o caminho mais promissor para equipamentos acessíveis de ponto de cuidado combina blindagem parcial, disciplina procedimental e cancelamento orientado por dados.
+Em síntese, a interferência eletromagnética em MRI tem origens variadas --- falhas na blindagem, cabos e equipamentos na sala, a eletrônica do próprio equipamento e o corpo do paciente --- e se manifesta na imagem como linhas, faixas ou aumento de ruído, cuja posição depende da frequência do agressor (Equação~\eqref{eq:posicao}). A blindagem, a identificação sistemática das fontes e a manutenção resolvem a maior parte dos casos clínicos, mas não tratam as fontes internas nem permitem equipamentos portáteis. O cancelamento ativo, em especial com aprendizado profundo, preenche essa lacuna: alcançou, sem nenhuma blindagem, níveis de ruído equivalentes aos de uma gaiola completa. A combinação dessas abordagens é o caminho mais promissor para equipamentos de MRI mais baratos e acessíveis.
 
 
 \begin{declarations}

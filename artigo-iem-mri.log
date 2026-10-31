@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2026.10.31)  31 OCT 2026 15:23
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2026.10.31)  31 OCT 2026 15:34
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1246,88 +1246,82 @@ Underfull \hbox (badness 2134) in paragraph at lines 256--256
 \T1/qtm/m/n/9 (+20) con-forme a po-si-ção do \T1/qtm/m/it/9 (+20) spike
  []
 
-[4]
-Underfull \hbox (badness 10000) in paragraph at lines 322--322
+
+Underfull \hbox (badness 10000) in paragraph at lines 286--286
 []\T1/qtm/b/n/9 (+20) Exigência de
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 323--323
+Underfull \hbox (badness 10000) in paragraph at lines 287--287
 []\T1/qtm/m/n/9 (+20) Padrão clí-nico
  []
 
 
-Underfull \hbox (badness 1297) in paragraph at lines 324--324
+Underfull \hbox (badness 1297) in paragraph at lines 288--288
 []\T1/qtm/m/n/9 (+20) Demonstrado em
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 325--325
+Underfull \hbox (badness 10000) in paragraph at lines 289--289
 []\T1/qtm/m/n/9 (+20) Triagem pro-ce-di-
  []
 
 
-Underfull \hbox (badness 3679) in paragraph at lines 325--325
+Underfull \hbox (badness 3679) in paragraph at lines 289--289
 \T1/qtm/m/n/9 (+20) men-tal e con-trole
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 325--325
+Underfull \hbox (badness 10000) in paragraph at lines 289--289
 []\T1/qtm/m/n/9 (+20) Nenhuma além
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 325--325
+Underfull \hbox (badness 10000) in paragraph at lines 289--289
 []\T1/qtm/m/n/9 (+20) Apenas fon-tes
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 326--326
+Underfull \hbox (badness 10000) in paragraph at lines 290--290
 []\T1/qtm/m/n/9 (+20) Média (bo-bi-nas
  []
 
 
-Underfull \hbox (badness 4846) in paragraph at lines 327--327
+Underfull \hbox (badness 4846) in paragraph at lines 291--291
 []\T1/qtm/m/n/9 (+20) Média (bo-bi-nas,
  []
 
 
-Underfull \hbox (badness 2460) in paragraph at lines 327--327
+Underfull \hbox (badness 2460) in paragraph at lines 291--291
 []\T1/qtm/m/n/9 (+20) Pesquisa, có-digo
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 328--328
+Underfull \hbox (badness 10000) in paragraph at lines 292--292
 []\T1/qtm/m/n/9 (+20) Média (bo-bi-nas
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 328--328
+Underfull \hbox (badness 10000) in paragraph at lines 292--292
 []\T1/qtm/m/n/9 (+20) Sim, de-mons-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 328--328
+Underfull \hbox (badness 10000) in paragraph at lines 292--292
 []\T1/qtm/m/n/9 (+20) Sim, de-mons-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 328--328
+Underfull \hbox (badness 10000) in paragraph at lines 292--292
 []\T1/qtm/m/n/9 (+20) Pesquisa avan-
  []
 
 
-Underfull \hbox (badness 4144) in paragraph at lines 328--328
+Underfull \hbox (badness 4144) in paragraph at lines 292--292
 \T1/qtm/m/n/9 (+20) çada; co-orte de
  []
 
-[5] (./artigo-iem-mri.bbl
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [6])
-[7
-
-] (./artigo-iem-mri.aux)
+[4] [5] (./artigo-iem-mri.bbl) [6] (./artigo-iem-mri.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-22>
@@ -1340,11 +1334,11 @@ Package rerunfilecheck Info: File `artigo-iem-mri.out' has not changed.
 (rerunfilecheck)             Checksum: A56EC04FF67A18C34F10714619DF60FF;3937.
  ) 
 Here is how much of TeX's memory you used:
- 32989 strings out of 474222
- 614806 string characters out of 5748732
- 1959975 words of memory out of 5000000
- 54285 multiletter control sequences out of 15000+600000
- 834960 words of font info for 294 fonts, out of 8000000 for 9000
+ 32930 strings out of 474222
+ 613767 string characters out of 5748732
+ 1963975 words of memory out of 5000000
+ 54253 multiletter control sequences out of 15000+600000
+ 833026 words of font info for 284 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  132i,14n,135p,1488b,890s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/fira/FiraSans-Bold.pfb></us
@@ -1352,24 +1346,21 @@ r/share/texlive/texmf-dist/fonts/type1/public/fira/FiraSans-BoldItalic.pfb></us
 r/share/texlive/texmf-dist/fonts/type1/public/fira/FiraSans-Book.pfb></usr/shar
 e/texlive/texmf-dist/fonts/type1/public/fira/FiraSans-BookItalic.pfb></usr/shar
 e/texlive/texmf-dist/fonts/type1/public/fontawesome/FontAwesome.pfb></usr/share
-/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texli
-ve/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/tex
-mf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dis
-t/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/share/texlive/texmf-dist/fonts
-/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/
-public/amsfonts/cm/cmmi9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/
-amsfonts/cm/cmmib10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfo
-nts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/
-cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.p
-fb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></us
-r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share
-/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texmf/
-fonts/type1/public/tex-gyre/qtmb.pfb></usr/share/texmf/fonts/type1/public/tex-g
-yre/qtmr.pfb></usr/share/texmf/fonts/type1/public/tex-gyre/qtmri.pfb>
-Output written on artigo-iem-mri.pdf (7 pages, 456044 bytes).
+/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texli
+ve/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texm
+f-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></usr/share/texlive/texmf-dist/
+fonts/type1/public/amsfonts/cm/cmmib10.pfb></usr/share/texlive/texmf-dist/fonts
+/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/
+public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/a
+msfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfont
+s/cm/cmsy6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cm
+sy8.pfb></usr/share/texmf/fonts/type1/public/tex-gyre/qtmb.pfb></usr/share/texm
+f/fonts/type1/public/tex-gyre/qtmr.pfb></usr/share/texmf/fonts/type1/public/tex
+-gyre/qtmri.pfb>
+Output written on artigo-iem-mri.pdf (6 pages, 412005 bytes).
 PDF statistics:
- 474 PDF objects out of 1000 (max. 8388607)
- 397 compressed objects within 4 object streams
- 61 named destinations out of 1000 (max. 500000)
- 80573 words of extra memory for PDF output out of 89155 (max. 10000000)
+ 419 PDF objects out of 1000 (max. 8388607)
+ 351 compressed objects within 4 object streams
+ 50 named destinations out of 1000 (max. 500000)
+ 78525 words of extra memory for PDF output out of 89155 (max. 10000000)
 

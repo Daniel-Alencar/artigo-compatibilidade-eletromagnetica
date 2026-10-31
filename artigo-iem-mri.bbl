@@ -5,26 +5,6 @@
 \newblock {\em Magnetic Resonance Imaging Quality Control Manual}.
 \newblock American College of Radiology, Reston, VA.
 
-\bibitem[Briggs {\em et~al}., 2000]{briggs2000removing}
-Briggs, F., Bell, J., and Kesteven, M. (2000).
-\newblock Removing radio interference from contaminated astronomical spectra
-  using an independent reference signal and closure relations.
-\newblock {\em The Astronomical Journal}, 120(6):3351--3361. DOI:
-  10.1086/316861.
-
-\bibitem[Huang {\em et~al}., 2018]{huang2018adaptive}
-Huang, X., Dong, H., Qiu, Y., {\em et~al}. (2018).
-\newblock Adaptive suppression of power line interference in ultra-low field
-  magnetic resonance imaging in an unshielded environment.
-\newblock {\em Journal of Magnetic Resonance}, 286:52--59. DOI:
-  10.1016/j.jmr.2017.11.009.
-
-\bibitem[Iglesias {\em et~al}., 2023]{iglesias2023quantitative}
-Iglesias, J.~E., Schleicher, R., Laguna, S., {\em et~al}. (2023).
-\newblock Quantitative brain morphometry of portable low-field-strength {MRI}
-  using super-resolution machine learning.
-\newblock {\em Radiology}, 306(3):e220522. DOI: 10.1148/radiol.220522.
-
 \bibitem[{International Electrotechnical Commission}, 2014]{iec60601}
 {International Electrotechnical Commission} (2014).
 \newblock {IEC 60601-1-2}: Medical electrical equipment -- part 1-2: General
@@ -46,12 +26,6 @@ Kibret, B., Teshome, A.~K., and Lai, D.~T. (2016).
   communication.
 \newblock {\em IEEE Transactions on Antennas and Propagation},
   64(4):1466--1476. DOI: 10.1109/TAP.2016.2526070.
-
-\bibitem[Kwok, 2022]{kwok2022basic}
-Kwok, W.~E. (2022).
-\newblock Basic principles of and practical guide to clinical {MRI}
-  radiofrequency coils.
-\newblock {\em RadioGraphics}, 42:898--918.
 
 \bibitem[Kwok, 2024]{kwok2024rf}
 Kwok, W.~E. (2024).
@@ -85,17 +59,6 @@ O'Reilly, T., Teeuwisse, W.~M., de~Gans, D., Koolstra, K., and Webb, A.~G.
 \newblock {\em Magnetic Resonance in Medicine}, 85(1):495--505. DOI:
   10.1002/mrm.28396.
 
-\bibitem[Parsa {\em et~al}., 2023]{parsa2023single}
-Parsa, J., O'Reilly, T., and Webb, A. (2023).
-\newblock A single-coil-based method for electromagnetic interference reduction
-  in point-of-care low field {MRI} systems.
-\newblock {\em Journal of Magnetic Resonance}, 346:107355.
-
-\bibitem[Rearick {\em et~al}., 2017]{rearick2017patent}
-Rearick, T., Charvat, G.~L., Rosen, M.~S., and Rothberg, J.~M. (2017).
-\newblock Noise suppression methods and apparatus.
-\newblock US Patent No. 9,797,971.
-
 \bibitem[Srinivas {\em et~al}., 2022]{srinivas2022editer}
 Srinivas, S.~A., Cauley, S.~F., Stockmann, J.~P., Sappo, C.~R., Vaughn, C.~E.,
   Wald, L.~L., {\em et~al}. (2022).
@@ -117,14 +80,8 @@ Zanche, N.~D. (2018).
   figures --- from {MRI} signal to bits.
 \newblock In {\em Proceedings of the 27th Annual Meeting of ISMRM}.
 
-\bibitem[Zhao {\em et~al}., 2024a]{zhao2024robust}
-Zhao, Y., Xiao, L., Hu, J., and Wu, E.~X. (2024a).
-\newblock Robust {EMI} elimination for {RF} shielding-free {MRI} through deep
-  learning direct {MR} signal prediction.
-\newblock {\em Magnetic Resonance in Medicine}, 92:112--127.
-
-\bibitem[Zhao {\em et~al}., 2024b]{zhao2024emi}
-Zhao, Y., Xiao, L., Liu, Y., Leong, A.~T., and Wu, E.~X. (2024b).
+\bibitem[Zhao {\em et~al}., 2024]{zhao2024emi}
+Zhao, Y., Xiao, L., Liu, Y., Leong, A.~T., and Wu, E.~X. (2024).
 \newblock Electromagnetic interference elimination via active sensing and deep
   learning prediction for radiofrequency shielding-free {MRI}.
 \newblock {\em NMR in Biomedicine}, 37(7):e4956. DOI: 10.1002/nbm.4956.

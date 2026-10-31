@@ -4,50 +4,47 @@ The top-level auxiliary file: artigo-iem-mri.aux
 The style file: apalike-sol.bst
 Database file #1: refs-mri.bib
 Warning--empty doi in kellogg2021navigating
-Warning--empty doi in kwok2022basic
 Warning--empty doi in mugler2014optimized
-Warning--empty doi in parsa2023single
 Warning--empty doi in zanche2018rf
-Warning--empty doi in zhao2024robust
-You've used 20 entries,
+You've used 13 entries,
             1961 wiz_defined-function locations,
-            611 strings with 7723 characters,
-and the built_in function-call counts, 8202 in all, are:
-= -- 790
-> -- 363
-< -- 7
-+ -- 129
-- -- 124
-* -- 739
-:= -- 1459
-add.period$ -- 60
-call.type$ -- 20
-change.case$ -- 158
-chr.to.int$ -- 19
-cite$ -- 26
-duplicate$ -- 277
-empty$ -- 569
-format.name$ -- 144
-if$ -- 1560
-int.to.chr$ -- 2
+            567 strings with 6399 characters,
+and the built_in function-call counts, 5286 in all, are:
+= -- 507
+> -- 228
+< -- 6
++ -- 80
+- -- 78
+* -- 473
+:= -- 942
+add.period$ -- 39
+call.type$ -- 13
+change.case$ -- 102
+chr.to.int$ -- 13
+cite$ -- 16
+duplicate$ -- 183
+empty$ -- 373
+format.name$ -- 91
+if$ -- 1007
+int.to.chr$ -- 1
 int.to.str$ -- 0
-missing$ -- 19
-newline$ -- 103
-num.names$ -- 60
-pop$ -- 122
+missing$ -- 13
+newline$ -- 68
+num.names$ -- 39
+pop$ -- 81
 preamble$ -- 1
-purify$ -- 158
+purify$ -- 102
 quote$ -- 0
-skip$ -- 204
+skip$ -- 134
 stack$ -- 0
-substring$ -- 607
-swap$ -- 18
+substring$ -- 382
+swap$ -- 12
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 118
-warning$ -- 6
-while$ -- 68
+type$ -- 76
+warning$ -- 3
+while$ -- 44
 width$ -- 0
-write$ -- 272
-(There were 6 warnings)
+write$ -- 179
+(There were 3 warnings)
