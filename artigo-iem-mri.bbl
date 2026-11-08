@@ -2,44 +2,33 @@
 
 \bibitem[{International Electrotechnical Commission}, 2014]{iec60601}
 {International Electrotechnical Commission} (2014).
-\newblock {IEC 60601-1-2}: Medical electrical equipment -- part 1-2: General
-  requirements for basic safety and essential performance -- collateral
-  standard: Electromagnetic disturbances -- requirements and tests.
-\newblock Technical report, International Electrotechnical Commission, Geneva,
-  Switzerland.
+\newblock {IEC 60601-1-2}: Medical electrical equipment -- part 1-2: General requirements for basic safety and essential performance -- collateral standard: Electromagnetic disturbances -- requirements and tests.
+\newblock Technical report, International Electrotechnical Commission, Geneva, Switzerland.
 
 \bibitem[Kellogg, 2021]{kellogg2021navigating}
 Kellogg, J. (2021).
-\newblock Navigating the selection of magnetic resonance imaging shielding
-  systems.
-\newblock {\em IEEE Letters on Electromagnetic Compatibility Practice and
-  Applications}, 3:43--46.
+\newblock Navigating the selection of magnetic resonance imaging shielding systems.
+\newblock {\em IEEE Letters on Electromagnetic Compatibility Practice and Applications}, 3:43--46.
 
 \bibitem[Kibret {\em et~al}., 2016]{kibret2016analysis}
 Kibret, B., Teshome, A.~K., and Lai, D.~T. (2016).
-\newblock Analysis of the human body as an antenna for wireless implant
-  communication.
-\newblock {\em IEEE Transactions on Antennas and Propagation},
-  64(4):1466--1476. DOI: 10.1109/TAP.2016.2526070.
+\newblock Analysis of the human body as an antenna for wireless implant communication.
+\newblock {\em IEEE Transactions on Antennas and Propagation}, 64(4):1466--1476. DOI: 10.1109/TAP.2016.2526070.
 
 \bibitem[Kwok, 2024]{kwok2024rf}
 Kwok, W.~E. (2024).
-\newblock Radiofrequency interference in magnetic resonance imaging:
-  Identification and rectification.
-\newblock {\em Journal of Clinical Imaging Science}, 14:33. DOI:
-  10.25259/JCIS\_74\_2024.
+\newblock Radiofrequency interference in magnetic resonance imaging: Identification and rectification.
+\newblock {\em Journal of Clinical Imaging Science}, 14:33. DOI: 10.25259/JCIS\_74\_2024.
 
 \bibitem[Liu {\em et~al}., 2021]{liu2021lowcost}
 Liu, Y., Leong, A. T.~L., Zhao, Y., {\em et~al}. (2021).
 \newblock A low-cost and shielding-free ultra-low-field brain {MRI} scanner.
-\newblock {\em Nature Communications}, 12(1):1--14. DOI:
-  10.1038/s41467-021-27317-1.
+\newblock {\em Nature Communications}, 12(1):1--14. DOI: 10.1038/s41467-021-27317-1.
 
 \bibitem[Marques {\em et~al}., 2019]{marques2019lowfield}
 Marques, J.~P., Simonis, F. F.~J., and Webb, A.~G. (2019).
 \newblock Low-field {MRI}: An {MR} physics perspective.
-\newblock {\em Journal of Magnetic Resonance Imaging}, 49(6):1528--1542. DOI:
-  10.1002/jmri.26637.
+\newblock {\em Journal of Magnetic Resonance Imaging}, 49(6):1528--1542. DOI: 10.1002/jmri.26637.
 
 \bibitem[{Mugler III}, 2014]{mugler2014optimized}
 {Mugler III}, J.~P. (2014).
@@ -47,38 +36,28 @@ Marques, J.~P., Simonis, F. F.~J., and Webb, A.~G. (2019).
 \newblock {\em Journal of Magnetic Resonance Imaging}, 39:745--767.
 
 \bibitem[O'Reilly {\em et~al}., 2021]{oreilly2021invivo}
-O'Reilly, T., Teeuwisse, W.~M., de~Gans, D., Koolstra, K., and Webb, A.~G.
-  (2021).
-\newblock In vivo {3D} brain and extremity {MRI} at 50 {mT} using a permanent
-  magnet {H}albach array.
-\newblock {\em Magnetic Resonance in Medicine}, 85(1):495--505. DOI:
-  10.1002/mrm.28396.
+O'Reilly, T., Teeuwisse, W.~M., de~Gans, D., Koolstra, K., and Webb, A.~G. (2021).
+\newblock In vivo {3D} brain and extremity {MRI} at 50 {mT} using a permanent magnet {H}albach array.
+\newblock {\em Magnetic Resonance in Medicine}, 85(1):495--505. DOI: 10.1002/mrm.28396.
 
 \bibitem[Srinivas {\em et~al}., 2022]{srinivas2022editer}
-Srinivas, S.~A., Cauley, S.~F., Stockmann, J.~P., Sappo, C.~R., Vaughn, C.~E.,
-  Wald, L.~L., {\em et~al}. (2022).
-\newblock External dynamic interference estimation and removal ({EDITER}) for
-  low field {MRI}.
-\newblock {\em Magnetic Resonance in Medicine}, 87(2):614--628. DOI:
-  10.1002/mrm.28992.
+Srinivas, S.~A., Cauley, S.~F., Stockmann, J.~P., Sappo, C.~R., Vaughn, C.~E., Wald, L.~L., {\em et~al}. (2022).
+\newblock External dynamic interference estimation and removal ({EDITER}) for low field {MRI}.
+\newblock {\em Magnetic Resonance in Medicine}, 87(2):614--628. DOI: 10.1002/mrm.28992.
 
 \bibitem[Yang {\em et~al}., 2022]{yang2022active}
 Yang, L., He, W., He, Y., Wu, J., Shen, S., and Xu, Z. (2022).
-\newblock Active {EMI} suppression system for a 50 {mT} unshielded portable
-  {MRI} scanner.
-\newblock {\em IEEE Transactions on Biomedical Engineering}, 69(11):3415--3426.
-  DOI: 10.1109/TBME.2022.3170450.
+\newblock Active {EMI} suppression system for a 50 {mT} unshielded portable {MRI} scanner.
+\newblock {\em IEEE Transactions on Biomedical Engineering}, 69(11):3415--3426. DOI: 10.1109/TBME.2022.3170450.
 
 \bibitem[Zanche, 2018]{zanche2018rf}
 Zanche, N.~D. (2018).
-\newblock {RF} receivers: Signal detection chain, digitization, system noise
-  figures --- from {MRI} signal to bits.
+\newblock {RF} receivers: Signal detection chain, digitization, system noise figures --- from {MRI} signal to bits.
 \newblock In {\em Proceedings of the 27th Annual Meeting of ISMRM}.
 
 \bibitem[Zhao {\em et~al}., 2024]{zhao2024emi}
 Zhao, Y., Xiao, L., Liu, Y., Leong, A.~T., and Wu, E.~X. (2024).
-\newblock Electromagnetic interference elimination via active sensing and deep
-  learning prediction for radiofrequency shielding-free {MRI}.
+\newblock Electromagnetic interference elimination via active sensing and deep learning prediction for radiofrequency shielding-free {MRI}.
 \newblock {\em NMR in Biomedicine}, 37(7):e4956. DOI: 10.1002/nbm.4956.
 
 \end{thebibliography}

@@ -89,9 +89,12 @@ Programa de Pós-Graduação em Engenharia Elétrica, Universidade ..., Endereç
 \end{mail}
 
 
-\begin{abstract-pt}
-Do ponto de vista da compatibilidade eletromagnética, a imagem por ressonância magnética (\textit{Magnetic Resonance Imaging} --- MRI) é um caso extremo de receptor de radiofrequência: a bobina receptora é uma antena sintonizada na frequência de Larmor, projetada para detectar tensões da ordem de microvolts, e qualquer campo espúrio nessa faixa compete diretamente com o sinal útil. Neste trabalho, revisam-se as fontes e seus mecanismos: deficiências de blindagem, condutores indevidamente conduzidos pelo guia de onda, equipamentos no interior da sala e, de modo frequentemente subestimado, fontes internas ao próprio equipamento, que a gaiola de Faraday não atenua. Descreve-se a cadeia causal que leva da perturbação ao artefato, estabelecendo que a posição deste é fixada pelo desvio de frequência do sinal interferente e pela largura de banda de recepção, e que a interferência de banda larga degrada a relação sinal-ruído sem produzir estrutura reconhecível. Comparam-se, por fim, a mitigação consolidada e o cancelamento ativo, no qual bobinas sensoras medem a interferência para subtraí-la retrospectivamente. A abordagem por aprendizado profundo, com rede convolucional treinada a cada exame, alcançou níveis de ruído sem qualquer blindagem equivalentes, dentro de 3\%, aos obtidos com gaiola completa.
-\end{abstract-pt}
+\begin{abstract}
+Do ponto de vista da compatibilidade eletromagnética, a imagem por ressonância magnética (\textit{Magnetic Resonance Imaging}, ou MRI) é um caso extremo de receptor de radiofrequência: a bobina receptora é uma antena sintonizada na frequência de Larmor, projetada para detectar tensões da ordem de microvolts, e qualquer campo espúrio nessa faixa compete diretamente com o sinal útil. Neste trabalho, revisam-se as fontes e seus mecanismos: deficiências de blindagem, condutores indevidamente conduzidos pelo guia de onda, equipamentos no interior da sala e, de modo frequentemente subestimado, fontes internas ao próprio equipamento, que a gaiola de Faraday não atenua. Descreve-se a cadeia causal que leva da perturbação ao artefato, estabelecendo que a posição deste é fixada pelo desvio de frequência do sinal interferente e pela largura de banda de recepção, e que a interferência de banda larga degrada a relação sinal-ruído sem produzir estrutura reconhecível. Comparam-se, por fim, a mitigação consolidada e o cancelamento ativo, no qual bobinas sensoras medem a interferência para subtraí-la retrospectivamente. A abordagem por aprendizado profundo, com rede convolucional treinada a cada exame, alcançou níveis de ruído sem qualquer blindagem equivalentes, dentro de 3\%, aos obtidos com gaiola completa.
+\end{abstract}
+
+% \begin{abstract-en}
+% \end{abstract-en}
 
 \begin{pchaves}
 Compatibilidade eletromagnética, Interferência eletromagnética, Ressonância magnética, Artefatos de imagem, Blindagem de radiofrequência, Aprendizado profundo
@@ -103,7 +106,7 @@ Compatibilidade eletromagnética, Interferência eletromagnética, Ressonância 
 \section{Introdução}
 \label{sec:intro}
 
-O sinal útil em imagem por ressonância magnética (\textit{Magnetic Resonance Imaging} --- MRI) é a tensão induzida em uma bobina receptora pela precessão da magnetização nuclear, da ordem de microvolts, em uma faixa estreita de frequências. Essa bobina é, para todos os efeitos de engenharia, uma antena ressonante de alta sensibilidade \citep{kwok2024rf}. Do ponto de vista da compatibilidade eletromagnética (CEM), a configuração define uma vítima quase ideal: qualquer campo espúrio de radiofrequência (RF) que alcance a bobina na faixa de recepção é digitalizado junto com o sinal de ressonância e reaparece na imagem como o artefato de interferência de RF, conhecido como artefato de zíper por sua aparência de linhas brilhantes paralelas \citep{kwok2024rf}. Ele está entre os artefatos mais frequentes em exames clínicos, porque o número de fontes potenciais em ambiente hospitalar é grande \citep{kwok2024rf}.
+O sinal útil em imagem por ressonância magnética (\textit{Magnetic Resonance Imaging}, ou MRI) é a tensão induzida em uma bobina receptora pela precessão da magnetização nuclear, da ordem de microvolts, em uma faixa estreita de frequências. Essa bobina é, para todos os efeitos de engenharia, uma antena ressonante de alta sensibilidade \citep{kwok2024rf}. Do ponto de vista da compatibilidade eletromagnética (CEM), a configuração define uma vítima quase ideal: qualquer campo espúrio de radiofrequência (RF) que alcance a bobina na faixa de recepção é digitalizado junto com o sinal de ressonância e reaparece na imagem como o artefato de interferência de RF, conhecido como artefato de zíper por sua aparência de linhas brilhantes paralelas \citep{kwok2024rf}. Ele está entre os artefatos mais frequentes em exames clínicos, porque o número de fontes potenciais em ambiente hospitalar é grande \citep{kwok2024rf}.
 
 A resposta histórica foi a blindagem passiva: o equipamento é instalado em uma gaiola de Faraday que envolve integralmente a sala, com atenuação tipicamente em torno de 100\,dB \citep{kwok2024rf, kellogg2021navigating}. A solução é eficaz, mas impõe custo e requisitos rígidos de infraestrutura \citep{zhao2024emi} e, sobretudo, atua apenas sobre o acoplamento com o ambiente externo: não protege contra fontes situadas dentro da própria sala, sejam equipamentos auxiliares, sejam subsistemas do próprio equipamento de MRI \citep{kwok2024rf, zhao2024emi}. Esse ponto cego tornou-se crítico com os equipamentos de campo ultrabaixo (\textit{Ultra-Low-Field} --- ULF), abaixo de 0,1\,T, voltados a exames de baixo custo à beira do leito \citep{marques2019lowfield, liu2021lowcost}. Eles dispensam blindagem magnética, mas muitos ainda exigem uma gaiola de RF volumosa, o que anula a portabilidade que os motivou \citep{zhao2024emi}. Daí a pergunta que orienta a literatura recente: é possível substituir, total ou parcialmente, a blindagem passiva por medição e cancelamento ativos da interferência?
 
@@ -174,7 +177,7 @@ O caso mais comum é o vazamento de RF externa por falhas na gaiola: porta abert
 \subsection{Cabos atravessando o guia de onda}
 \label{subsec:waveguide}
 
-O guia de onda é um duto na parede que bloqueia RF e deve receber apenas fibra óptica e tubos não metálicos. Quando um cabo elétrico ou de rede passa por ele, o condutor funciona como antena: capta RF fora da sala e a reirradia dentro dela, anulando a blindagem. Em um caso relatado, o cabo de uma luminária ligado a uma tomada da sala de comando causou artefato \textbf{mesmo com a luminária desligada}, e o problema só desapareceu quando o cabo foi recolhido para dentro da sala \citep{kwok2024rf}, como mostra a Figura~\ref{fig:luminaria}.
+O guia de onda é um duto na parede que bloqueia RF e deve receber apenas fibra óptica e tubos não metálicos. Quando um cabo elétrico ou de rede passa por ele, o condutor funciona como antena: capta RF fora da sala e a reirradia dentro dela, anulando a blindagem. Em um caso relatado, o cabo de uma luminária ligado a uma tomada da sala de comando causou artefato mesmo com a luminária desligada, e o problema só desapareceu quando o cabo foi recolhido para dentro da sala \citep{kwok2024rf}, como mostra a Figura~\ref{fig:luminaria}.
 
 \begin{figure}[t]
 \centering
@@ -186,7 +189,7 @@ O guia de onda é um duto na parede que bloqueia RF e deve receber apenas fibra 
 \subsection{Equipamentos dentro da sala}
 \label{subsec:equipamentos}
 
-Injetoras de contraste, aparelhos de anestesia, monitores e luminárias têm fontes chaveadas e circuitos digitais que emitem RF \citep{kwok2024rf}. Uma injetora de contraste causava artefato enquanto estivesse \textbf{conectada à tomada}, mesmo desligada: é preciso desconectar o equipamento, e não apenas desligá-lo. Já um aparelho de anestesia reduziu a relação sinal-ruído (\textit{Signal-to-Noise Ratio} --- SNR) medida em simulador de 64,4 para 32,9 \citep{kwok2024rf}, uma perda de
+Injetoras de contraste, aparelhos de anestesia, monitores e luminárias têm fontes chaveadas e circuitos digitais que emitem RF \citep{kwok2024rf}. Uma injetora de contraste causava artefato enquanto estivesse conectada à tomada, mesmo desligada: é preciso desconectar o equipamento, e não apenas desligá-lo. Já um aparelho de anestesia reduziu a relação sinal-ruído (\textit{Signal-to-Noise Ratio} --- SNR) medida em simulador de 64,4 para 32,9 \citep{kwok2024rf}, uma perda de
 \begin{equation}
 \Delta\mathrm{SNR} = 20\log_{10}\frac{32{,}9}{64{,}4} \approx -5{,}8\,\mathrm{dB} ,
 \label{eq:snr}
@@ -196,7 +199,7 @@ sem produzir nenhum artefato visível. Além disso, a ausência de artefato com 
 \subsection{Eletrônica do próprio equipamento}
 \label{subsec:internas}
 
-Console, amplificadores de gradiente e de RF e fontes de alimentação ficam do mesmo lado da blindagem que a bobina receptora, e nenhuma gaiola os atenua. \citet{zhao2024emi} observaram interferência de banda estreita vinda do console \textbf{com a gaiola completa instalada}, em um equipamento de 0,055\,T, e artefatos da eletrônica de \textit{front-end} \textbf{com a porta da sala fechada}, em um equipamento clínico de 1,5\,T.
+Console, amplificadores de gradiente e de RF e fontes de alimentação ficam do mesmo lado da blindagem que a bobina receptora, e nenhuma gaiola os atenua. \citet{zhao2024emi} observaram interferência de banda estreita vinda do console com a gaiola completa instalada, em um equipamento de 0,055\,T, e artefatos da eletrônica de \textit{front-end} com a porta da sala fechada, em um equipamento clínico de 1,5\,T.
 
 \subsection{O corpo do paciente}
 
@@ -328,34 +331,6 @@ A Tabela~\ref{tab:comparacao} resume as estratégias. Elas são complementares: 
 A principal lacuna é a falta de padronização: cada trabalho avalia o desempenho com métricas e condições de interferência diferentes, o que impede comparar diretamente os métodos. A CEM já dispõe de ferramentas para isso, como ensaios com fontes de interferência controladas. Outras questões em aberto são a validação clínica do cancelamento ativo, com estudos de desempenho diagnóstico, sua avaliação em equipamentos de alto campo \citep{zhao2024emi} e a redução da interferência na própria origem, por meio de um projeto eletrônico mais cuidadoso dos equipamentos.
 
 Em síntese, a interferência eletromagnética em MRI tem origens variadas (falhas na blindagem, cabos e equipamentos na sala, a eletrônica do próprio equipamento e o corpo do paciente) e se manifesta na imagem como linhas, faixas ou aumento de ruído, cuja posição depende da frequência do sinal interferente (Equação~\eqref{eq:posicao}). A blindagem e a identificação sistemática das fontes resolvem a maior parte dos casos clínicos, mas não tratam as fontes internas nem permitem equipamentos portáteis. O cancelamento ativo, em especial com aprendizado profundo, preenche essa lacuna: alcançou, sem nenhuma blindagem, níveis de ruído equivalentes aos de uma gaiola completa. A combinação dessas abordagens é o caminho mais promissor para equipamentos de MRI mais baratos e acessíveis.
-
-
-\begin{declarations}
-
-\begin{contributions}
-Descrever a contribuição de cada autor usando a Taxonomia CRediT
-(\href{https://credit.niso.org/}{https://credit.niso.org/}).
-\end{contributions}
-
-\begin{interests}
-Os autores declaram que não têm nenhum conflito de interesses.
-\end{interests}
-
-\begin{materials}
-Esta revisão não gerou dados primários; os trabalhos analisados estão
-identificados nas referências.
-\end{materials}
-
-\begin{aitools}
-[PREENCHER: ferramentas de IA generativa utilizadas, com versões, e onde foram empregadas.]
-\end{aitools}
-
-\begin{furtherinformation}
-Esta revisão não envolveu pesquisa com seres humanos ou animais, não sendo
-aplicável aprovação por comitê de ética.
-\end{furtherinformation}
-
-\end{declarations}
 
 \bibliographystyle{apalike-sol}
 \bibliography{refs-mri}
