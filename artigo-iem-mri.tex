@@ -90,14 +90,14 @@ Programa de Pós-Graduação em Engenharia Elétrica, Universidade ..., Endereç
 
 
 \begin{abstract}
-Do ponto de vista da compatibilidade eletromagnética, a imagem por ressonância magnética (\textit{Magnetic Resonance Imaging}, ou MRI) é um caso extremo de receptor de radiofrequência: a bobina receptora é uma antena sintonizada na frequência de Larmor, projetada para detectar tensões da ordem de microvolts, e qualquer campo espúrio nessa faixa compete diretamente com o sinal útil. Neste trabalho, revisam-se as fontes e seus mecanismos: deficiências de blindagem, condutores indevidamente conduzidos pelo guia de onda, equipamentos no interior da sala e, de modo frequentemente subestimado, fontes internas ao próprio equipamento, que a gaiola de Faraday não atenua. Descreve-se a cadeia causal que leva da perturbação ao artefato, estabelecendo que a posição deste é fixada pelo desvio de frequência do sinal interferente e pela largura de banda de recepção, e que a interferência de banda larga degrada a relação sinal-ruído sem produzir estrutura reconhecível. Comparam-se, por fim, a mitigação consolidada e o cancelamento ativo, no qual bobinas sensoras medem a interferência para subtraí-la retrospectivamente. A abordagem por aprendizado profundo, com rede convolucional treinada a cada exame, alcançou níveis de ruído sem qualquer blindagem equivalentes, dentro de 3\%, aos obtidos com gaiola completa.
+Do ponto de vista da compatibilidade eletromagnética, a imagem por ressonância magnética (\textit{Magnetic Resonance Imaging}, ou MRI) é um caso extremo de receptor de radiofrequência: a bobina receptora é uma antena sintonizada na frequência de Larmor, projetada para detectar tensões da ordem de microvolts, e qualquer campo espúrio nessa faixa compete diretamente com o sinal útil. Neste trabalho, revisam-se as fontes e seus mecanismos: deficiências de blindagem, condutores indevidamente conduzidos pelo guia de onda, equipamentos no interior da sala e, de modo frequentemente subestimado, fontes internas ao próprio equipamento, que a gaiola de Faraday não atenua. Descreve-se a cadeia causal que leva da perturbação ao artefato, estabelecendo que a posição deste é fixada pelo desvio de frequência do sinal interferente e pela largura de banda de recepção, e que a interferência de banda larga degrada a relação sinal-ruído sem produzir estrutura reconhecível. Duas análises teóricas complementam a revisão: na primeira, a teoria de Schelkunoff e a de guias de onda abaixo do corte mostram por que, em alto campo, o desempenho da sala é ditado pelas descontinuidades e pelos condutores que a atravessam, e não pela espessura do metal; na segunda, deduzem-se a tensão induzida na bobina, o ruído térmico e o ganho de processamento da reconstrução, verificado por simulação numérica, que explica por que uma interferência abaixo do ruído em cada amostra ainda produz um artefato visível. Comparam-se, por fim, a mitigação consolidada e o cancelamento ativo, no qual bobinas sensoras medem a interferência para subtraí-la retrospectivamente. A abordagem por aprendizado profundo, com rede convolucional treinada a cada exame, alcançou níveis de ruído sem qualquer blindagem equivalentes, dentro de 3\%, aos obtidos com gaiola completa.
 \end{abstract}
 
 % \begin{abstract-en}
 % \end{abstract-en}
 
 \begin{pchaves}
-Compatibilidade eletromagnética, Interferência eletromagnética, Ressonância magnética, Artefatos de imagem, Blindagem de radiofrequência, Aprendizado profundo
+Compatibilidade eletromagnética, Interferência eletromagnética, Ressonância magnética, Artefatos de imagem, Blindagem de radiofrequência, Eficiência de blindagem, Aprendizado profundo
 \end{pchaves}
 
 \end{frontmatter}
@@ -110,12 +110,13 @@ O sinal útil em imagem por ressonância magnética (\textit{Magnetic Resonance 
 
 A resposta histórica foi a blindagem passiva: o equipamento é instalado em uma gaiola de Faraday que envolve integralmente a sala, com atenuação tipicamente em torno de 100\,dB \citep{kwok2024rf, kellogg2021navigating}. A solução é eficaz, mas impõe custo e requisitos rígidos de infraestrutura \citep{zhao2024emi} e, sobretudo, atua apenas sobre o acoplamento com o ambiente externo: não protege contra fontes situadas dentro da própria sala, sejam equipamentos auxiliares, sejam subsistemas do próprio equipamento de MRI \citep{kwok2024rf, zhao2024emi}. Esse ponto cego tornou-se crítico com os equipamentos de campo ultrabaixo (\textit{Ultra-Low-Field} --- ULF), abaixo de 0,1\,T, voltados a exames de baixo custo à beira do leito \citep{marques2019lowfield, liu2021lowcost}. Eles dispensam blindagem magnética, mas muitos ainda exigem uma gaiola de RF volumosa, o que anula a portabilidade que os motivou \citep{zhao2024emi}. Daí a pergunta que orienta a literatura recente: é possível substituir, total ou parcialmente, a blindagem passiva por medição e cancelamento ativos da interferência?
 
-Há uma lacuna de integração na literatura: trabalhos de orientação clínica tratam de reconhecer e eliminar a interferência na rotina de um serviço de radiologia \citep{kwok2024rf}, enquanto trabalhos de instrumentação buscam viabilizar equipamentos sem blindagem \citep{zhao2024emi, srinivas2022editer}. Esta revisão articula as duas perspectivas em um quadro de CEM, respondendo a quatro questões: (QP1) que situações constituem fontes de interferência eletromagnética (IEM) em MRI e por quais mecanismos alcançam a cadeia de recepção; (QP2) como a IEM se propaga para a imagem e que assinaturas produz; (QP3) quais mecanismos de mitigação estão consolidados e quais seus limites; e (QP4) que mecanismos da pesquisa recente ampliam esses limites, e com que evidência. Trata-se de uma revisão narrativa integrativa, que reúne essas duas perspectivas sobre o problema.
+Há uma lacuna de integração na literatura: trabalhos de orientação clínica tratam de reconhecer e eliminar a interferência na rotina de um serviço de radiologia \citep{kwok2024rf}, enquanto trabalhos de instrumentação buscam viabilizar equipamentos sem blindagem \citep{zhao2024emi, srinivas2022editer}. Esta revisão articula as duas perspectivas em um quadro de CEM, respondendo a quatro questões: (QP1) que situações constituem fontes de interferência eletromagnética (IEM) em MRI e por quais mecanismos alcançam a cadeia de recepção; (QP2) como a IEM se propaga para a imagem e que assinaturas produz; (QP3) quais mecanismos de mitigação estão consolidados e quais seus limites; e (QP4) que mecanismos da pesquisa recente ampliam esses limites, e com que evidência. Trata-se de uma revisão narrativa integrativa, que reúne essas duas perspectivas sobre o problema, complementada por fundamentação teórica com as ferramentas usuais de CEM: a teoria da blindagem de RF (Subseções~\ref{subsec:impedancia} a~\ref{subsec:condutor}), que fundamenta as respostas a QP1 e QP3, e as relações que levam da interferência incidente ao pixel da imagem (Subseções~\ref{subsec:captacao} a~\ref{subsec:banda_larga}), que aprofundam a resposta a QP2.
 
 \section{Fundamentos}
 \label{sec:fundamentos}
 
 \subsection{Frequência de Larmor e faixas envolvidas}
+\label{subsec:larmor}
 
 O sinal decorre da precessão da magnetização nuclear em torno do campo estático $B_0$, à frequência de Larmor
 \begin{equation}
@@ -144,6 +145,7 @@ em que $\mathrm{FOV}_x$ é o campo de visão e $\mathrm{BW}$ a largura de banda 
 O comportamento na direção de codificação de fase decorre da repetição da aquisição: cada linha do espaço-$k$ é adquirida em um tempo de repetição distinto, e o sinal interferente contribui para todas. Se a relação de fase entre esse sinal e o \textit{clock} da aquisição for aleatória de linha para linha, a transformada de Fourier ao longo dessa direção distribui a energia por toda a extensão da imagem, produzindo a linha brilhante contínua característica.
 
 \subsection{A sala blindada}
+\label{subsec:sala}
 
 A contramedida convencional envolve a vítima em uma gaiola que cobre paredes, teto, piso, janela e porta, em painéis de cobre, aço ou alumínio \citep{kwok2024rf, kellogg2021navigating}. O requisito típico é de 100\,dB de atenuação em 100\,MHz para 1,5\,T e em 150--170\,MHz para 3,0\,T \citep{kwok2024rf}; as frequências de ensaio situam-se acima das respectivas frequências de Larmor, incorporando margem de projeto. A Figura~\ref{fig:blindagem} mostra os três elementos principais dessa gaiola.
 
@@ -162,6 +164,169 @@ Em uma blindagem bem executada, o fator limitante não é a espessura do conduto
 Para 1,5\,T, $\ell \approx 2{,}3$\,m, da mesma ordem do perímetro de uma folha de porta; para 3,0\,T, $\ell \approx 1{,}2$\,m. Esse raciocínio dimensional explica quantitativamente por que a porta é, empiricamente, o ponto de falha mais frequente. O requisito de CEM da instalação não é, portanto, ``instalar metal'', mas garantir continuidade de corrente superficial em todo o envelope ao longo de sua vida útil.
 
 No plano normativo, a CEM de equipamentos eletromédicos é tratada pela norma IEC 60601-1-2 \citep{iec60601}, mas a conformidade de um equipamento auxiliar não garante ausência de artefato: a perturbação tolerável por uma bobina receptora sintonizada é bem mais restrita que a exigida de um equipamento eletromédico genérico, e equipamentos conformes, mesmo rotulados como seguros para o ambiente de ressonância, podem produzir artefatos visíveis \citep{kwok2024rf}.
+
+\subsection{Impedância de onda e regime de campo}
+\label{subsec:impedancia}
+
+As Subseções~\ref{subsec:larmor} e~\ref{subsec:sala} afirmaram que painéis delgados atenuam mal campos magnéticos de baixa frequência e que, em alto campo, o fator limitante da sala não é a espessura do metal, mas a integridade das descontinuidades. As Subseções~\ref{subsec:impedancia} a~\ref{subsec:condutor} deduzem essas afirmações da teoria eletromagnética clássica: o tipo de campo que chega à blindagem, a atenuação de uma placa contínua, a perda nas aberturas e o funcionamento do guia de onda de penetração, que deixa de funcionar quando um condutor o atravessa. Os valores numéricos são calculados pelas equações apresentadas, para as três frequências de Larmor da Subseção~\ref{subsec:larmor}, e reunidos na Tabela~\ref{tab:se}.
+
+Em primeira aproximação, uma fonte de interferência pode ser idealizada como um dipolo elétrico, que representa circuitos de alta tensão e baixa corrente, como trilhas com tensão chaveada ou cabos com a extremidade aberta, ou como um dipolo magnético, que representa circuitos de alta corrente e baixa tensão, como transformadores, indutores de fontes chaveadas, motores e laços formados por cabos \citep{balanis2016, ott2009}. Para o dipolo magnético, isto é, uma espira pequena de raio $a$ percorrida pela corrente $I_0$, as componentes transversais dos campos em coordenadas esféricas são \citep{balanis2016}
+\begin{equation}
+H_\theta = -\frac{(ka)^2 I_0 \sin\theta}{4r}\left[1 + \frac{1}{jkr} - \frac{1}{(kr)^2}\right] e^{-jkr},
+\label{eq:Htheta}
+\end{equation}
+\begin{equation}
+E_\phi = \eta_0\,\frac{(ka)^2 I_0 \sin\theta}{4r}\left[1 + \frac{1}{jkr}\right] e^{-jkr},
+\label{eq:Ephi}
+\end{equation}
+em que $k = 2\pi/\lambda$ é o número de onda e $\eta_0 = \sqrt{\mu_0/\varepsilon_0} \approx 377\,\Omega$ é a impedância intrínseca do vácuo. Os colchetes contêm termos que, multiplicados pelo fator $1/r$ externo, decaem com $1/r$, $1/r^2$ e $1/r^3$. Longe da fonte ($kr \gg 1$), resta apenas o termo em $1/r$, que transporta a potência irradiada: é o campo distante, em que a onda é localmente plana. Perto da fonte ($kr \ll 1$), predominam os termos de ordem mais alta, que armazenam energia em vez de irradiá-la: é o campo próximo.
+
+Do ponto de vista da blindagem, o campo é caracterizado pela impedância de onda, razão entre as componentes transversais dos campos elétrico e magnético. Das Equações~\eqref{eq:Htheta} e~\eqref{eq:Ephi},
+\begin{equation}
+Z_w = \left|\frac{E_\phi}{H_\theta}\right| = \eta_0\,\frac{\left|1 + \dfrac{1}{jkr}\right|}{\left|1 + \dfrac{1}{jkr} - \dfrac{1}{(kr)^2}\right|}.
+\label{eq:zw_ratio}
+\end{equation}
+Para $kr \gg 1$, os dois colchetes tendem a 1 e $Z_w \to \eta_0$, qualquer que seja a fonte. Para $kr \ll 1$, o numerador é dominado por $1/(kr)$ e o denominador por $1/(kr)^2$, de modo que, usando $\eta_0 k = \sqrt{\mu_0/\varepsilon_0}\,\omega\sqrt{\mu_0\varepsilon_0} = \omega\mu_0$,
+\begin{equation}
+Z_w^{(H)} \approx \eta_0\,kr = \eta_0\,\frac{2\pi r}{\lambda} = \omega\mu_0 r \quad \mbox{(fonte magnética)}.
+\label{eq:zw_h}
+\end{equation}
+Pelo princípio da dualidade, que troca $\mathbf{E}$ por $\mathbf{H}$ e $\mu$ por $\varepsilon$, o dipolo elétrico fornece o resultado inverso \citep{balanis2016, ott2009}:
+\begin{equation}
+Z_w^{(E)} \approx \frac{\eta_0}{kr} = \frac{1}{\omega\varepsilon_0 r} \quad \mbox{(fonte elétrica)}.
+\label{eq:zw_e}
+\end{equation}
+O campo próximo de uma fonte magnética é, portanto, de baixa impedância ($Z_w < \eta_0$), e o de uma fonte elétrica, de alta impedância ($Z_w > \eta_0$); ambos tendem a $\eta_0$ na fronteira $kr = 1$, isto é, $r = \lambda/2\pi$. Como em uma linha de transmissão, $Z_w$ faz o papel da impedância característica do meio pelo qual a onda chega à blindagem, e é do descasamento entre ela e a impedância do metal que resulta a reflexão (Subseção~\ref{subsec:reflexao}). A fronteira $\lambda/2\pi$ vale 0,37\,m em 127,7\,MHz, 0,75\,m em 63,9\,MHz e 20,6\,m em 2,32\,MHz: em alto campo, fontes externas a alguns metros da parede chegam à sala praticamente como ondas planas, enquanto em 0,055\,T quase todas as fontes da instalação estão no campo próximo.
+
+\subsection{Absorção e profundidade de penetração}
+\label{subsec:absorcao}
+
+Em um bom condutor ($\sigma \gg \omega\varepsilon$), a corrente de deslocamento é desprezível diante da de condução, e as equações de Maxwell na forma fasorial reduzem-se a $\nabla\times\mathbf{E} = -j\omega\mu\mathbf{H}$ e $\nabla\times\mathbf{H} = \sigma\mathbf{E}$. Aplicando o rotacional à primeira e usando $\nabla\times\nabla\times\mathbf{E} = -\nabla^2\mathbf{E}$, válido porque não há carga livre no interior do condutor, obtém-se a equação de difusão $\nabla^2\mathbf{E} = j\omega\mu\sigma\,\mathbf{E}$. Para uma onda que penetra perpendicularmente em uma placa, $\mathbf{E} \propto e^{-\gamma z}$, com $\gamma^2 = j\omega\mu\sigma$; como $\sqrt{j} = (1+j)/\sqrt{2}$,
+\begin{equation}
+\gamma = (1+j)\sqrt{\frac{\omega\mu\sigma}{2}} = \frac{1+j}{\delta}, \qquad \delta = \frac{1}{\sqrt{\pi f \mu \sigma}},
+\label{eq:delta}
+\end{equation}
+em que $\delta$ é a profundidade de penetração, a mesma do efeito pelicular \citep{pozar2012}. A amplitude decai como $e^{-z/\delta}$, e uma placa de espessura $t$ introduz a perda por absorção
+\begin{equation}
+A = 20\log_{10} e^{t/\delta} = 8{,}686\,\frac{t}{\delta}\ \mathrm{dB},
+\label{eq:A}
+\end{equation}
+pois $20\log_{10} e \approx 8{,}686$. Para o cobre ($\sigma = 5{,}8\times10^{7}$\,S/m, $\mu = \mu_0$) \citep{pozar2012}, a Equação~\eqref{eq:delta} dá $\delta \approx 66\,\mu\mathrm{m}/\sqrt{f\,[\mathrm{MHz}]}$, isto é, 43, 8,3 e 5,8\,$\mu$m nas três frequências de Larmor. A absorção depende só do material, da espessura e da frequência, e não do tipo de campo incidente.
+
+\subsection{Reflexão e o modelo de Schelkunoff}
+\label{subsec:reflexao}
+
+\citet{schelkunoff1943} tratou a placa condutora como um trecho de linha de transmissão inserido entre dois meios de impedância $Z_w$, abordagem que se tornou a base do cálculo de blindagens \citep{ott2009, paul2006}. Para uma onda plana $\propto e^{-\gamma z}$, a lei de Faraday dá $\gamma E = j\omega\mu H$, e a impedância intrínseca do metal é
+\begin{equation}
+Z_s = \frac{E}{H} = \frac{j\omega\mu}{\gamma} = \sqrt{\frac{j\omega\mu}{\sigma}} = \frac{1+j}{\sigma\delta},
+\qquad
+|Z_s| = \sqrt{\frac{2\pi f\mu}{\sigma}},
+\label{eq:zs}
+\end{equation}
+da ordem de miliohms: 0,56, 2,9 e 4,2\,m$\Omega$ para o cobre nas três frequências. Diante de $Z_w$, de dezenas ou centenas de ohms, o metal é quase um curto-circuito.
+
+Em uma interface plana entre um meio de impedância $Z_1$ e outro de impedância $Z_2$, a continuidade das componentes tangenciais de $\mathbf{E}$ e de $\mathbf{H}$ impõe $E_i + E_r = E_t$ e $(E_i - E_r)/Z_1 = E_t/Z_2$, em que os índices indicam as ondas incidente, refletida e transmitida. Resolvendo o sistema \citep{pozar2012},
+\begin{equation}
+\Gamma = \frac{E_r}{E_i} = \frac{Z_2 - Z_1}{Z_2 + Z_1}, \qquad \tau = \frac{E_t}{E_i} = \frac{2Z_2}{Z_1 + Z_2}.
+\label{eq:tau}
+\end{equation}
+Na primeira face da placa ($Z_1 = Z_w$, $Z_2 = Z_s$), $\Gamma \approx -1$, e só a fração $\tau_1 \approx 2Z_s/Z_w$ do campo elétrico penetra; na segunda ($Z_1 = Z_s$, $Z_2 = Z_w$), o campo é multiplicado por $\tau_2 \approx 2$. O produto $\tau_1\tau_2 \approx 4Z_s/Z_w$ define a perda por reflexão
+\begin{equation}
+R = 20\log_{10}\frac{|Z_w|}{4\,|Z_s|}\ \mathrm{dB}.
+\label{eq:R}
+\end{equation}
+A parcela refletida na segunda face volta à primeira, é novamente refletida e soma-se ao campo transmitido, atenuada de $e^{-2\gamma t}$ a cada ida e volta. A soma dessa série geométrica multiplica o campo transmitido por $1/(1 - q\,e^{-2\gamma t})$, com $q = [(Z_w - Z_s)/(Z_w + Z_s)]^2$, o que leva à expressão de Schelkunoff para a eficiência de blindagem (\textit{Shielding Effectiveness} --- SE), razão em decibéis entre os campos incidente e transmitido \citep{ott2009}:
+\begin{equation}
+\mathrm{SE} = A + R + B, \qquad B = 20\log_{10}\left|1 - q\,e^{-2(1+j)t/\delta}\right|.
+\label{eq:schelkunoff}
+\end{equation}
+Como $|e^{-2(1+j)t/\delta}| = e^{-2t/\delta}$, para $t \ge \delta$ tem-se $|q\,e^{-2\gamma t}| \le e^{-2} \approx 0{,}14$ e $|B| \le 1{,}1$\,dB: o termo só importa em películas mais finas que $\delta$.
+
+A Figura~\ref{fig:schelkunoff} aplica as Equações~\eqref{eq:A}--\eqref{eq:R} a um exemplo: uma onda plana de 63,9\,MHz incidindo sobre uma folha de cobre de 0,1\,mm. O campo cai 96\,dB ao entrar no metal ($20\log_{10}|\tau_1|$), mais 105\,dB ao atravessá-lo ($A$), e recupera 6\,dB ao sair ($20\log_{10}|\tau_2|$), num total de 195\,dB, igual a $A + R$ (Tabela~\ref{tab:se}). Usar no lugar de $\eta_0$ o $Z_w$ de campo próximo das Equações~\eqref{eq:zw_h} e~\eqref{eq:zw_e} é uma aproximação usual na prática de CEM, embora não exata, pois o campo próximo não é uma onda plana \citep{ott2009}; ela basta para estimativas de ordem de grandeza.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{figuras/fig_schelkunoff.png}
+\caption{Diagrama de níveis do campo elétrico de uma onda plana de 63,9\,MHz atravessando uma folha de cobre de 0,1\,mm (espessura de exemplo), calculado pelas Equações~\eqref{eq:A}, \eqref{eq:tau} e~\eqref{eq:R}. Fonte: elaborada pelos autores.}
+\label{fig:schelkunoff}
+\end{figure}
+
+O ponto central é que $R$ depende de $Z_w$, isto é, do tipo de campo. Para onda plana, $R = 20\log_{10}(\eta_0/4|Z_s|)$ diminui com a frequência, pois $|Z_s| \propto \sqrt{f}$. Para um campo magnético próximo, $Z_w = \omega\mu_0 r$ é pequeno, e $R = 20\log_{10}(\omega\mu_0 r/4|Z_s|)$ cresce com $\sqrt{f}$: tanto $A$ quanto $R$ diminuem quando a frequência cai, e por isso o campo magnético de baixa frequência é o caso mais difícil de blindar \citep{ott2009}, justamente o do campo ultrabaixo. A Tabela~\ref{tab:se} ilustra o efeito com uma fonte magnética a 10\,cm da parede, distância escolhida como exemplo. Em 1,5 e 3,0\,T, mesmo nesse caso, uma folha de cobre de 0,1\,mm proporcionaria 178 e 224\,dB, muito acima dos 100\,dB especificados \citep{kwok2024rf}: a espessura do metal não é o fator limitante, o que confirma a Subseção~\ref{subsec:sala}. Em 0,055\,T, o mesmo caso daria 78\,dB, e atingir 100\,dB exigiria cerca de 0,21\,mm de cobre, o que dá base quantitativa à afirmação da Subseção~\ref{subsec:larmor}.
+
+\begin{table}[t]
+\centering\small
+\caption{Grandezas da blindagem calculadas pelos autores com as Equações~\eqref{eq:zw_h}--\eqref{eq:R}, \eqref{eq:abertura} e~\eqref{eq:guia}, para cobre ($\sigma = 5{,}8\times10^{7}$\,S/m). A espessura $t = 0{,}1$\,mm, a distância $r = 10$\,cm, a fenda de 1\,cm e as dimensões do guia são valores de exemplo.}
+\label{tab:se}
+\begin{tabular}{|p{3.4cm}|c|c|c|}
+\hline
+ & \textbf{0,055\,T} & \textbf{1,5\,T} & \textbf{3,0\,T} \\ \hline
+$f_0$ (MHz) & 2,32 & 63,9 & 127,7 \\ \hline
+$\lambda/2\pi$ (m) & 20,6 & 0,75 & 0,37 \\ \hline
+$\delta$ ($\mu$m) & 43 & 8,3 & 5,8 \\ \hline
+$|Z_s|$ (m$\Omega$) & 0,56 & 2,9 & 4,2 \\ \hline
+$A$, $t = 0{,}1$\,mm (dB) & 20 & 105 & 149 \\ \hline
+$R$, onda plana (dB) & 104 & 90 & 87 \\ \hline
+$R$, fonte magnética a 10\,cm (dB) & 58 & 73 & 76 \\ \hline
+$A + R$, fonte magnética a 10\,cm (dB) & 78 & 178 & 224 \\ \hline
+$t$ para $A + R = 100$\,dB, fonte magnética a 10\,cm & 0,21\,mm & 26\,$\mu$m & 16\,$\mu$m \\ \hline
+Fenda de 1\,cm (dB) & 76 & 47 & 41 \\ \hline
+Guia, $d = 10$\,cm, $L = 50$\,cm (dB) & 160 & 160 & 160 \\ \hline
+\end{tabular}
+\end{table}
+
+\subsection{Aberturas: a fenda como antena}
+\label{subsec:aberturas}
+
+Para entender por que as descontinuidades dominam, é preciso olhar para as correntes. O campo incidente induz correntes na face externa da blindagem, e é o campo dessas correntes que cancela o campo incidente no interior: a blindagem funciona porque essas correntes circulam livremente. Uma fenda que corta o caminho da corrente obriga-a a contorná-la; as cargas que se acumulam nas bordas criam uma tensão entre elas, e a fenda passa a irradiar para o interior. Pelo princípio de Babinet, uma fenda em um plano condutor é a estrutura complementar de um dipolo de mesmas dimensões e ressoa na mesma frequência \citep{balanis2016}: com $\ell = \lambda/2$, ela irradia como um dipolo de meia onda, e essa é a origem física da Equação~\eqref{eq:fenda}.
+
+Abaixo da ressonância, a eficiência de blindagem de uma abertura cuja maior dimensão é $\ell < \lambda/2$ é estimada por \citep{ott2009}
+\begin{equation}
+\mathrm{SE}_{\mathrm{ab}} \approx 20\log_{10}\frac{\lambda}{2\ell}\ \mathrm{dB},
+\label{eq:abertura}
+\end{equation}
+que se anula em $\ell = \lambda/2$ e diminui cerca de $20\log_{10}\sqrt{n}$ quando há $n$ aberturas iguais alinhadas a menos de $\lambda/2$ umas das outras \citep{ott2009}. Trata-se de uma estimativa de pior caso para parede fina, em que importa a maior dimensão linear, e não a área: pela Equação~\eqref{eq:abertura}, em 1,5\,T, uma fresta de 1\,cm\,$\times$\,0,1\,mm vaza mais (47\,dB) que um furo de 5\,mm de diâmetro (53\,dB), embora tenha área 20 vezes menor. Levada ao extremo, a mesma equação indicaria que 100\,dB exigem $\ell$ inferior a cerca de 23\,$\mu$m em 1,5\,T e 12\,$\mu$m em 3,0\,T. A extrapolação é apenas indicativa, pois juntas reais têm profundidade e se comportam em parte como guias abaixo do corte (Subseção~\ref{subsec:guia}), mas a conclusão de projeto é clara: as frestas precisam ser eliminadas eletricamente, com juntas soldadas ou sobrepostas sob pressão e, na porta, contatos de cobre em todo o perímetro (Figura~\ref{fig:blindagem}c). Quando esses contatos se desgastam, a corrente perde o caminho ao longo do trecho afetado, e a Equação~\eqref{eq:abertura} passa a valer com $\ell$ igual ao comprimento desse trecho. Em 0,055\,T, ao contrário, uma fenda de 1\,cm ainda proporcionaria 76\,dB: o mecanismo dominante de falha passa das aberturas, em alto campo, ao próprio material, em campo ultrabaixo.
+
+\subsection{O guia de onda de penetração: operação abaixo do corte}
+\label{subsec:guia}
+
+O guia de onda da Subseção~\ref{subsec:waveguide} permite abrir na parede um duto de vários centímetros, para fibras ópticas e tubos não metálicos, sem comprometer a blindagem. A explicação vem da teoria de guias de onda \citep{pozar2012}. Em um tubo metálico de seção uniforme, os campos variam ao longo do eixo como $e^{-\gamma z}$, e as equações de Maxwell permitem escrever as componentes transversais a partir das longitudinais $E_z$ e $H_z$. Nos modos transversais elétricos (TE, $E_z = 0$), $H_z$ obedece à equação de Helmholtz na seção do tubo,
+\begin{equation}
+\nabla_t^2 H_z + k_c^2 H_z = 0, \qquad k_c^2 = \gamma^2 + k^2,
+\label{eq:helmholtz}
+\end{equation}
+e nos transversais magnéticos (TM, $H_z = 0$), $E_z$ obedece à mesma equação. O número de onda de corte $k_c$ não depende da frequência: ele é fixado pela geometria, por meio das condições de contorno nas paredes, onde o campo elétrico tangencial deve se anular, o que equivale a $\partial H_z/\partial n = 0$ nos modos TE e a $E_z = 0$ nos modos TM.
+
+\textbf{Guia retangular.} Em um tubo de seção $a \times b$, a separação de variáveis dá $H_z \propto \cos(m\pi x/a)\cos(n\pi y/b)$, que satisfaz $\partial H_z/\partial n = 0$ nas quatro paredes, com $k_c^2 = (m\pi/a)^2 + (n\pi/b)^2$. Para $a > b$, o menor valor é o do modo TE$_{10}$, $k_c = \pi/a$, isto é, comprimento de onda de corte $\lambda_c = 2\pi/k_c = 2a$: meio comprimento de onda precisa caber na largura do tubo.
+
+\textbf{Guia circular.} Em um tubo de diâmetro $d$, a separação de variáveis em coordenadas cilíndricas dá $H_z \propto J_m(k_c\rho)\cos(m\phi)$, em que $J_m$ é a função de Bessel de primeira espécie. A condição $\partial H_z/\partial\rho = 0$ na parede ($\rho = d/2$) exige $J_m'(k_c d/2) = 0$, ou seja, $k_c = 2p'_{mn}/d$, sendo $p'_{mn}$ a $n$-ésima raiz de $J_m'$. A menor dessas raízes é $p'_{11} \approx 1{,}841$; nos modos TM, a condição $J_m(k_c d/2) = 0$ tem como menor raiz $p_{01} \approx 2{,}405$, maior que $p'_{11}$ \citep{pozar2012}. O modo de menor frequência de corte é, portanto, o TE$_{11}$, com $k_c = 3{,}682/d$ e
+\begin{equation}
+f_c = \frac{c\,k_c}{2\pi} = \frac{1{,}841\,c}{\pi d},
+\label{eq:fc}
+\end{equation}
+que vale 1,76\,GHz para $d = 10$\,cm, muito acima de qualquer frequência de Larmor.
+
+\textbf{Abaixo do corte.} Da Equação~\eqref{eq:helmholtz}, $\gamma = \sqrt{k_c^2 - k^2}$. Acima do corte ($k > k_c$), $\gamma$ é imaginário e o modo se propaga; abaixo dele ($k < k_c$), $\gamma = \alpha$ é real, e o campo decai como $e^{-\alpha z}$ sem transportar potência: o modo é evanescente. Para $f \ll f_c$, $\alpha \approx k_c$ independe da frequência, e a atenuação ao longo de um comprimento $L$ é
+\begin{equation}
+A_{\mathrm{g}} = 8{,}686\,\alpha L \approx 8{,}686\,\frac{3{,}682}{d}\,L \approx 32\,\frac{L}{d}\ \mathrm{dB}
+\label{eq:guia}
+\end{equation}
+para o tubo circular, ou $8{,}686\,\pi L/a \approx 27{,}3\,L/a$ para o retangular \citep{ott2009}. Cada diâmetro de comprimento acrescenta cerca de 32\,dB (3,2\,dB/cm para $d = 10$\,cm; Figura~\ref{fig:duto}), em toda a faixa de MRI. O diâmetro fixa o corte, e o comprimento, a atenuação. O acoplamento do campo externo ao modo evanescente nas bocas do tubo acrescenta atenuação, de modo que a Equação~\eqref{eq:guia} é conservadora. Um dielétrico de permissividade relativa $\varepsilon_r$ preenchendo o tubo não altera $k_c$, mas aumenta $k$ por $\sqrt{\varepsilon_r}$, reduzindo $f_c$ na mesma proporção.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{figuras/fig_guia.png}
+\caption{Guia de onda circular de penetração ($d = 10$\,cm, $L = 20$\,cm, valores de exemplo) em 63,9\,MHz, calculado pela Equação~\eqref{eq:guia}. Sem condutor, o modo TE$_{11}$ é evanescente e o campo decai 3,2\,dB/cm; com um cabo atravessando o guia, o modo TEM não sofre corte e, desprezadas as perdas, o campo atravessa a parede sem atenuação. Fonte: elaborada pelos autores.}
+\label{fig:duto}
+\end{figure}
+
+\subsection{O condutor que atravessa o guia de onda}
+\label{subsec:condutor}
+
+O modo transversal eletromagnético (TEM, $E_z = H_z = 0$) exige, pela Equação~\eqref{eq:helmholtz}, $k_c = 0$, e seu campo elétrico é o gradiente de um potencial $\Phi$ que satisfaz a equação de Laplace na seção do tubo. Em um tubo oco, a parede é um único condutor, sobre o qual $\Phi$ é constante; pela unicidade da solução, $\Phi$ é constante em todo o interior e o campo é nulo: não existe modo TEM \citep{pozar2012}. Basta introduzir um condutor no tubo para que isso mude. Com dois condutores, o cabo e a parede do guia, $\Phi$ pode assumir valores diferentes em cada um, e o modo TEM passa a existir, com $k_c = 0$ e, portanto, $\gamma = jk$: ele se propaga em qualquer frequência, inclusive em corrente contínua. O guia torna-se uma linha coaxial, e a atenuação da Equação~\eqref{eq:guia} desaparece (Figura~\ref{fig:duto}).
+
+O mecanismo tem três estágios. Fora da sala, o trecho externo do cabo funciona como antena receptora, e o campo incidente induz nele uma corrente de modo comum, que percorre todos os seus condutores no mesmo sentido em relação à parede. Essa corrente atravessa a parede pela linha coaxial formada com o guia. Dentro da sala, o trecho interno a reirradia. É o mecanismo do caso da Subseção~\ref{subsec:waveguide} (Figura~\ref{fig:luminaria}): o artefato persistia com a luminária desligada porque a via de acoplamento era o próprio condutor. Fibras ópticas e tubos não condutores não introduzem o segundo condutor e, portanto, não criam modo TEM.
+
+Um condutor que precise entrar na sala deve fazê-lo por um filtro de passagem instalado na própria parede, cujo elemento essencial é um capacitor de passagem ligado à blindagem em todo o seu contorno \citep{ott2009}. Sua impedância $1/\omega C$ é pequena em RF e grande na frequência da rede: para um capacitor de 10\,nF, por exemplo, 0,25\,$\Omega$ em 63,9\,MHz e cerca de 265\,k$\Omega$ em 60\,Hz. Ele desvia, assim, a corrente de modo comum para a face externa da parede sem interferir na alimentação. Um cabo blindado cuja malha é ligada à parede em 360$^{\circ}$ no ponto de entrada tem o mesmo efeito, pois a malha passa a fazer parte da blindagem. A regra da Seção~\ref{sec:mitigacao}, de nunca passar condutores pelo guia de onda, é consequência direta da existência do modo TEM.
 
 
 \section{Fontes de Interferência}
@@ -228,6 +393,7 @@ Corpo do paciente sem blindagem & Captação pelo corpo e acoplamento de campo p
 Esta seção responde a QP2, partindo do mecanismo da Subseção~\ref{subsec:kspace}.
 
 \subsection{Taxonomia das assinaturas}
+\label{subsec:taxonomia}
 
 A característica espectral do sinal interferente determina a aparência do artefato \citep{kwok2024rf}. Uma frequência única produz uma linha brilhante na direção de codificação de fase, posicionada conforme a Equação~\eqref{eq:posicao}; múltiplas frequências discretas produzem linhas paralelas, cada uma mapeada para sua própria coordenada; faixas de frequência produzem bandas brilhantes, por ocuparem um intervalo contíguo de coordenadas.
 
@@ -253,6 +419,85 @@ Movimento e pulsação & Movimento tecidual, fluxo sanguíneo, respiração & Fa
 Decaimento livre da indução & Pulsos de refocalização diferentes de 180$^\circ$ em eco de spin rápido 3D & Ondulação de intensidade sobre os tecidos afetados & \textbf{Restrito aos tecidos} de relaxação longitudinal curta; não se estende ao fundo \\ \hline
 \end{tabular}
 \end{table*}
+
+\subsection{Captação: a bobina receptora como antena de quadro}
+\label{subsec:captacao}
+
+A Equação~\eqref{eq:posicao} determina onde o artefato aparece; falta saber com que intensidade. As Subseções~\ref{subsec:captacao} a~\ref{subsec:banda_larga} deduzem as três relações que, encadeadas como as etapas de fonte, caminho e vítima de um problema de CEM, levam do campo interferente ao pixel da imagem: a tensão que o campo induz na bobina receptora, o ruído térmico contra o qual essa tensão compete e o ganho que a reconstrução confere a uma interferência coerente. Por fim, trata-se da interferência de banda larga, que não forma linha, mas tem um custo mensurável.
+
+A bobina receptora capta campos pela lei de Faraday. Considere-se uma bobina de $N$ espiras e área $S$, pequena diante do comprimento de onda, de modo que o campo magnético seja uniforme sobre ela, imersa em um campo senoidal de valor eficaz $H$ e frequência angular $\omega$, cuja direção forma o ângulo $\theta$ com a normal ao plano da bobina. O fluxo magnético concatenado com cada espira é
+\begin{equation}
+\Phi(t) = \mu_0 S\,\sqrt{2}\,H\cos\theta\,\cos\omega t,
+\label{eq:fluxo}
+\end{equation}
+e a força eletromotriz induzida nas $N$ espiras é $v(t) = -N\,\mathrm{d}\Phi/\mathrm{d}t = \sqrt{2}\,\omega\mu_0 N S H\cos\theta\,\sin\omega t$, cujo valor eficaz é
+\begin{equation}
+V_i = \omega\mu_0 N S H\cos\theta.
+\label{eq:faraday}
+\end{equation}
+A captação é máxima com o campo normal ao plano da bobina ($\theta = 0$) e cresce linearmente com a frequência, porque a força eletromotriz é proporcional à taxa de variação do fluxo. Em campo distante, $E$ e $H$ estão relacionados pela impedância do vácuo, $H = E/\eta_0$, e, como $\mu_0/\eta_0 = \sqrt{\mu_0\varepsilon_0} = 1/c$, tem-se $\omega\mu_0/\eta_0 = \omega/c = 2\pi/\lambda$, de modo que
+\begin{equation}
+V_i = \frac{2\pi N S}{\lambda}\,E\cos\theta = h_e\,E\cos\theta, \qquad h_e = \frac{2\pi N S}{\lambda},
+\label{eq:captacao}
+\end{equation}
+em que $h_e$ é a altura efetiva da bobina como antena de quadro \citep{balanis2016}. Em campo ultrabaixo, em que as fontes estão no campo próximo (Subseção~\ref{subsec:impedancia}), não vale $H = E/\eta_0$, e deve-se usar diretamente a Equação~\eqref{eq:faraday} com o campo magnético local.
+
+\subsection{O piso de ruído térmico}
+\label{subsec:ruido}
+
+A referência contra a qual a interferência compete é o ruído térmico. Um resistor $R$ em equilíbrio térmico à temperatura $T$ entrega a uma carga casada a potência de ruído disponível $k_B T\,\mathrm{BW}$, em que $k_B$ é a constante de Boltzmann e $\mathrm{BW}$ a largura de banda \citep{nyquist1928}. Modelando o resistor ruidoso como uma fonte de tensão $v_n$ em série com $R$, a potência entregue à carga casada é $v_n^2/4R$; igualando as duas expressões,
+\begin{equation}
+v_n = \sqrt{4 k_B T R\,\mathrm{BW}}.
+\label{eq:ruido}
+\end{equation}
+Em MRI, $R$ é a resistência equivalente às perdas da própria bobina somadas às perdas induzidas no paciente: o campo da bobina induz correntes parasitas no tecido condutor, e a potência dissipada aparece como uma resistência em série \citep{hoult1976}. Com bobinas usuais, as perdas no paciente tendem a dominar em alto campo, e as da bobina, em campo ultrabaixo \citep{hoult1976, marques2019lowfield}.
+
+A força eletromotriz $V_i$ e a tensão de ruído $v_n$ são fontes em série no mesmo laço, de modo que a rede de sintonia e casamento e o amplificador as multiplicam igualmente; só o ruído próprio do pré-amplificador piora a razão entre elas \citep{zanche2018rf}. A comparação pode, portanto, ser feita nos terminais da bobina, pela razão interferência-ruído por amostra
+\begin{equation}
+\mathrm{INR}_{\mathrm{in}} = \left(\frac{V_i}{v_n}\right)^{2}.
+\label{eq:inr_in}
+\end{equation}
+
+\subsection{Da amostra ao pixel: o ganho de processamento}
+\label{subsec:ganho}
+
+Comparar diretamente $V_i$ com $v_n$ subestima a visibilidade do artefato, porque a reconstrução trata de modo diferente um sinal coerente e o ruído. Durante a leitura, adquirem-se $N_x$ amostras complexas $x_n$, a intervalos $\Delta t = 1/\mathrm{BW}$. Uma interferência senoidal com desvio $\Delta f$ em relação à frequência central contribui com $a\,e^{j2\pi\Delta f\,n\Delta t}$, com $|a|^2/\sigma^2 = \mathrm{INR}_{\mathrm{in}}$, e o ruído, com amostras independentes de variância $\sigma^2$. A transformada discreta de Fourier ao longo da leitura, $X_m = \sum_{n=0}^{N_x-1} x_n\,e^{-j2\pi mn/N_x}$, concentra a senoide no índice $m_0 = \Delta f\,N_x/\mathrm{BW}$, que é a Equação~\eqref{eq:posicao} escrita em pixels. Nesse índice, as $N_x$ parcelas da senoide somam-se em fase, e a potência resultante é $N_x^2|a|^2$; as parcelas de ruído, independentes, somam-se em potência, resultando em $N_x\sigma^2$ em qualquer índice.
+
+Na direção de codificação de fase, o resultado depende de como a fase da interferência evolui de uma linha para outra. Se ela varia de modo efetivamente aleatório, como suposto na Subseção~\ref{subsec:kspace}, a energia da interferência espalha-se uniformemente pelos $N_y$ pixels da coluna, como a do ruído, e a razão entre ambas não se altera. Para cada pixel da linha de artefato, resulta
+\begin{equation}
+\mathrm{INR}_{\mathrm{pix}} = N_x\,\mathrm{INR}_{\mathrm{in}},
+\label{eq:ganho}
+\end{equation}
+um ganho de processamento de $10\log_{10}N_x$ decibéis, 24\,dB para $N_x = 256$, por exemplo. É o mesmo princípio que permite a um analisador de espectro baseado em FFT detectar tons abaixo do ruído. Se $\Delta f$ cair entre dois índices, a energia se divide entre pixels vizinhos, com perda máxima de 3,9\,dB para a janela retangular \citep{harris1978}. Se, ao contrário, a fase fosse a mesma em todas as linhas, como a de um nível CC residual no receptor, a energia se concentraria em um único ponto da coluna, com ganho $N_xN_y$: é a origem do conhecido artefato de ponto central.
+
+A Figura~\ref{fig:ziper} verifica a Equação~\eqref{eq:ganho} por simulação numérica. Um fantoma sintético de $256\times256$ pixels foi levado ao espaço-$k$, onde se somaram ruído gaussiano complexo e uma interferência senoidal com fase sorteada independentemente em cada linha; a imagem é o módulo da transformada inversa. A potência medida na coluna do artefato confirmou o ganho previsto, 24,1\,dB. Com $\mathrm{INR}_{\mathrm{pix}} = 0$\,dB (painel a), a linha não se distingue do ruído; uma senoide 4\,dB abaixo do ruído em cada amostra (painel c) produz uma linha nítida, enquanto a mesma potência espalhada uniformemente pela banda (painel d) apenas eleva o ruído, de $10\log_{10}(1 + 10^{-0{,}4}) \approx 1{,}5$\,dB pela Equação~\eqref{eq:banda_larga}. O efeito de uma interferência depende de como sua potência se distribui no espectro, e não só de quanto ela vale, o que dá forma quantitativa à taxonomia da Subseção~\ref{subsec:taxonomia}.
+
+\begin{figure*}[t]
+\centering
+\includegraphics[width=\textwidth]{figuras/fig_ziper.png}
+\caption{Simulação numérica do artefato de zíper (detalhe ampliado de um fantoma sintético de $256\times256$ pixels; as setas indicam a coluna do artefato). (a)--(c) Interferência senoidal com fase aleatória por linha: a potência por amostra fica abaixo do ruído em todos os casos, mas o ganho de processamento de 24\,dB (Equação~\eqref{eq:ganho}) torna a linha visível. (d) A mesma potência de (c) distribuída uniformemente na banda apenas eleva o ruído (Equação~\eqref{eq:banda_larga}). Fonte: elaborada pelos autores.}
+\label{fig:ziper}
+\end{figure*}
+
+\subsection{Expressão geral e consequências}
+\label{subsec:orcamento}
+
+Encadeando as Equações~\eqref{eq:captacao}, \eqref{eq:ruido}, \eqref{eq:inr_in} e~\eqref{eq:ganho}, e incluindo a eficiência de blindagem SE entre um campo incidente $E$, em campo distante, e a bobina, obtém-se, para incidência normal ($\theta = 0$),
+\begin{equation}
+\mathrm{INR}_{\mathrm{pix}} = 20\log_{10}\frac{h_e E}{v_n} - \mathrm{SE} + 10\log_{10}N_x \quad \mathrm{dB}.
+\label{eq:orcamento}
+\end{equation}
+Exigir que a linha não ultrapasse o ruído de um pixel ($\mathrm{INR}_{\mathrm{pix}} \le 0$\,dB) equivale a exigir $\mathrm{SE} \ge 20\log_{10}(h_e E/v_n) + 10\log_{10}N_x$. A avaliação numérica depende do campo presente em cada instalação e dos parâmetros de cada bobina, mas a forma da Equação~\eqref{eq:orcamento} já permite quatro conclusões. Primeiro, a blindagem entra decibel por decibel: cada decibel perdido em uma fenda (Subseção~\ref{subsec:aberturas}) é um decibel a mais na linha de artefato. Segundo, o termo $10\log_{10}N_x$ torna o requisito mais severo do que a comparação direta entre $V_i$ e $v_n$ sugere: uma interferência 24\,dB abaixo do ruído em cada amostra já atinge o nível do ruído no pixel. Terceiro, para equipamentos dentro da sala, $\mathrm{SE} = 0$, e o artefato depende apenas da emissão do equipamento e de sua distância à bobina, o que explica por que a conformidade normativa não garante ausência de artefato (Subseção~\ref{subsec:sala}). Quarto, quando as perdas no paciente dominam, $R$ cresce aproximadamente com $\omega^2$ \citep{hoult1976} e, pela Equação~\eqref{eq:ruido}, $v_n$ cresce com $\omega$, assim como $h_e$ (Equação~\eqref{eq:captacao}); a razão $h_e/v_n$ fica, então, aproximadamente independente da frequência, coerente com o fato de a mesma atenuação de 100\,dB ser especificada para 1,5\,T e para 3,0\,T \citep{kwok2024rf}.
+
+\subsection{Interferência de banda larga: o custo em tempo de exame}
+\label{subsec:banda_larga}
+
+Uma interferência de densidade espectral $S_i$ aproximadamente constante na banda de recepção é indistinguível do ruído térmico, de densidade $S_n$: não há linha, apenas elevação do piso (Subseção~\ref{subsec:taxonomia}). A SNR é inversamente proporcional à raiz da potência de ruído, que passa de $S_n\,\mathrm{BW}$ para $(S_n + S_i)\,\mathrm{BW}$; a razão entre a SNR com e sem interferência é $\sqrt{S_n/(S_n + S_i)}$, ou seja,
+\begin{equation}
+\Delta\mathrm{SNR} = 20\log_{10}\sqrt{\frac{S_n}{S_n + S_i}} = -10\log_{10}\left(1 + \frac{S_i}{S_n}\right)\ \mathrm{dB}.
+\label{eq:banda_larga}
+\end{equation}
+Em linguagem de telecomunicações, é como se a temperatura de ruído do sistema passasse de $T$ para $T(1 + S_i/S_n)$. Invertendo a Equação~\eqref{eq:banda_larga} para a perda de 5,8\,dB da Equação~\eqref{eq:snr}, obtém-se $1 + S_i/S_n = (64{,}4/32{,}9)^2 \approx 3{,}8$: admitindo que toda a perda se deva à elevação do piso de ruído, o aparelho de anestesia injetava cerca de 2,8 vezes a potência do ruído térmico. Essa perda tem um custo direto. Ao repetir a aquisição $N_{\mathrm{med}}$ vezes e tirar a média, o sinal soma-se coerentemente e o ruído em potência, pelo mesmo princípio da Subseção~\ref{subsec:ganho}, e a SNR cresce com $\sqrt{N_{\mathrm{med}}}$ \citep{haacke1999}. Recuperar a SNR original exige, portanto, multiplicar o número de médias, e com ele o tempo de aquisição, por $1 + S_i/S_n \approx 3{,}8$: uma perda que não deixa marca visível na imagem equivale a quase quadruplicar o tempo de exame, custo particularmente pesado no campo ultrabaixo, em que a SNR já é escassa \citep{marques2019lowfield}.
 
 
 \section{Mitigação Consolidada}
@@ -331,6 +576,8 @@ A Tabela~\ref{tab:comparacao} resume as estratégias. Elas são complementares: 
 A principal lacuna é a falta de padronização: cada trabalho avalia o desempenho com métricas e condições de interferência diferentes, o que impede comparar diretamente os métodos. A CEM já dispõe de ferramentas para isso, como ensaios com fontes de interferência controladas. Outras questões em aberto são a validação clínica do cancelamento ativo, com estudos de desempenho diagnóstico, sua avaliação em equipamentos de alto campo \citep{zhao2024emi} e a redução da interferência na própria origem, por meio de um projeto eletrônico mais cuidadoso dos equipamentos.
 
 Em síntese, a interferência eletromagnética em MRI tem origens variadas (falhas na blindagem, cabos e equipamentos na sala, a eletrônica do próprio equipamento e o corpo do paciente) e se manifesta na imagem como linhas, faixas ou aumento de ruído, cuja posição depende da frequência do sinal interferente (Equação~\eqref{eq:posicao}). A blindagem e a identificação sistemática das fontes resolvem a maior parte dos casos clínicos, mas não tratam as fontes internas nem permitem equipamentos portáteis. O cancelamento ativo, em especial com aprendizado profundo, preenche essa lacuna: alcançou, sem nenhuma blindagem, níveis de ruído equivalentes aos de uma gaiola completa. A combinação dessas abordagens é o caminho mais promissor para equipamentos de MRI mais baratos e acessíveis.
+
+A fundamentação teórica das Subseções~\ref{subsec:impedancia} a~\ref{subsec:condutor} e~\ref{subsec:captacao} a~\ref{subsec:banda_larga} reforça essas conclusões. Em alto campo, a espessura do metal raramente limita a sala, cujo desempenho é ditado pelas juntas, pela porta e pelos condutores que atravessam o guia de onda, convertendo-o em uma linha coaxial sem corte; em campo ultrabaixo, ao contrário, a própria espessura do material volta a pesar. O ganho de processamento da reconstrução, de $10\log_{10}N_x$, explica por que uma interferência abaixo do ruído em cada amostra ainda produz um artefato visível, e a perda de 5,8\,dB por interferência difusa equivale a quase quadruplicar o tempo de exame. Por fim, a razão interferência-ruído por pixel da Equação~\eqref{eq:ganho}, que relaciona o nível da fonte, o acoplamento e a visibilidade do artefato, é uma candidata natural à métrica comum cuja falta foi apontada acima: combinada a uma fonte calibrada, permitiria expressar o desempenho de cada método de mitigação como redução, em decibéis, dessa razão.
 
 \bibliographystyle{apalike-sol}
 \bibliography{refs-mri}
